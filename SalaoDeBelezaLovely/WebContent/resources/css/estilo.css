@@ -1,0 +1,110 @@
+body,xhtml {
+	width: 100%;
+	height: 100%;
+	font-family: Tahoma;
+	background-image: url("../img/fundo1.png");
+}
+
+#logo {
+	width: 1000px;
+	height: 100%;
+	padding-left: 8px;
+	padding-right: 10px;
+	margin: auto;
+}
+
+#fundo {
+	width: 1000px;
+	padding-left: 8px;
+	padding-right: 10px;
+	margin: auto;
+}
+
+#menu ul {
+	padding: 0px;
+	margin: 0px;
+	float: left;
+	width: 100%;
+	background-color: #EDEDED;
+	list-style: none;
+	font: 150% Tahoma;
+	opacity: 0.7;
+	font: 150% Tahoma;
+}
+
+#menu ul li {
+	display: inline;
+}
+
+#menu ul li a {
+	background-color: #EDEDED;
+	color: #333;
+	text-decoration: none;
+	border-bottom: 8px solid #EDEDED;
+	padding: 3px 55px;
+	float: left;
+}
+
+#menu ul li a:hover {
+	background-color: #D6D6D6;
+	color: #000000;
+	border-bottom: 5px solid #CE9C15;
+}
+
+/* SLIDER */
+#carousel-example-generic {
+	height: 300px;
+}
+
+#carousel-example-generic img {
+	height: 300px;
+	width: 100%;
+}
+
+#apresentacao {
+	width: 1000px;
+	padding-left: 8px;
+	padding-right: 10px;
+	margin: auto;
+	font-size: 16px;
+	color: #CE9C15;
+	text-align: justify;
+}
+
+#cadastro {
+	background-color: #e1e1e1;
+	left: 50%;
+	margin: -130px 0 0 -210px;
+	padding: 30px;
+	position: absolute;
+	top: 60%;
+	color: #CE9C15;
+	text-align: center;
+	border-radius: 20px;
+	
+}
+
+#listar {
+	background-color: #e1e1e1;
+	left: 50%;
+	margin: -130px 0 0 -210px;
+	padding: 30px;
+	position: absolute;
+	top: 60%;
+	color: #CE9C15;
+	text-align: center;
+	border-radius: 20px;
+}
+
+#rodape {
+	position: absolute; 
+	width: 100%;
+	font: 100% Tahoma;
+	color: black;
+	opacity: 0.7;
+	background-color: #EDEDED;
+	bottom: -200px; 
+	text-align: center;
+  }
+  
+  
