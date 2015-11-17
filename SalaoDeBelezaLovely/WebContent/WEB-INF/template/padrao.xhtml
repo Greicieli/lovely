@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
 	<title><ui:insert name="titulo">Salão de Beleza Lovely</ui:insert>
@@ -26,9 +26,9 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </h:head>
 <h:body>
-<div id="logo">
+	<div id="logo">
 		<form>
-			<img src="img/logo.png" alt="" width="400px" height="200px"
+			<h:graphicImage value="#{resource['img/logo.png']}" alt="" width="400px" height="200px"
 				align="top" />
 		</form>
 	</div>
@@ -40,8 +40,7 @@
 					<li><h:commandLink value="Home" action="index.xhtml" /></li>
 					<li><h:commandLink value="Produtos"
 							action="#{produtoBean.novo}" /></li>
-					<li><h:commandLink value="Agenda" 
-							action="#{agendaBean.novo}" /></li>
+					<li><h:commandLink value="Agenda" action="#{agendaBean.novo}" /></li>
 					<li><h:commandLink value="Clientes"
 							action="#{clienteBean.novo}" /></li>
 					<li><h:commandLink value="Funcionarios"
@@ -55,20 +54,18 @@
 		</h:form>
 	</div>
 	<ui:insert name="conteudo">
-	
+
 	</ui:insert>
-			
-			</div>
 
-	
-			<div id="rodape">
-		<br></br>Lovely Salão de Beleza
-		<br>Rua Bocaiuva, 1900<a id= "mapa" href="https://www.google.com.br/maps/place/Beiramar+Shopping+Center/@-27.5913708,-48.5398807,14z/data=!4m2!3m1!1s0x0:0x213691a7fa55d9a4?hl=pt-br" target="_blank"> Ver mapa</a>
-		<br>Contato: (48) 3039-9078</br></br>
-		</div>
-	
+	<div id="rodape">
+		<br></br>Lovely Salão de Beleza <br>Rua Bocaiuva, 1900<a
+			id="mapa"
+			href="https://www.google.com.br/maps/place/Beiramar+Shopping+Center/@-27.5913708,-48.5398807,14z/data=!4m2!3m1!1s0x0:0x213691a7fa55d9a4?hl=pt-br"
+			target="_blank"> Ver mapa</a> <br>Contato: (48) 3039-9078</br></br>
+	</div>
 
-	
+
+
 </h:body>
 
 </html>
