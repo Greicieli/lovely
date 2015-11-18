@@ -1,38 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-	<title>Salão de beleza Lovely</title>
-	<link href="css/estilo.css" rel="stylesheet" />
-</h:head>
-<h:body>
-	<div id="logo">
-		<form>
-			<img src="img/logo.png" alt="" width="400px" height="200px"
-				align="top" />
-		</form>
-	</div>
-	<div id="fundo">
-		<h:form>
-			<div id="menu">
 
-				<ul>
-					<li><h:commandLink value="Home" 
-							action="index.xhtml" /></li>
-					<li><h:commandLink value="Produtos"
-							action="#{produtoBean.novo}" /></li>
-					<li><h:commandLink value="Agenda" 
-							action="#{agendaBean.novo}" /></li>
-					<li><h:commandLink value="Clientes"
-							action="#{clienteBean.novo}" /></li>
-					<li><h:commandLink value="Funcionarios"
-							action="#{funcionarioBean.novo}" /></li>
-
-				</ul>
-			</div>
-		</h:form>
+<ui:composition template="WEB-INF/template/padrao.xhtml">
+	<ui:define name="conteudo">
+	
 		<h:form>
 			<h:messages />
 			<div id="cadastro">
@@ -42,7 +15,7 @@
 					<h:outputLabel value="Tipo De Produto:" for="tipoDeProduto_id" />
 					<h:inputText id="tipoDeProduto_id"
 						value="#{tipoDeProdutoBean.tipoDeProduto.tipoDeProduto}"
-						required="true" requiredMessage="O tipo de peoduto é obrigatório!" />
+						required="true" requiredMessage="O tipo de peoduto Ã© obrigatÃ³rio!" />
 
 					<h:commandButton value="Listar Tipo de Produtos"
 						action="#{tipoDeProdutoBean.voltar}" immediate="true" />
@@ -53,7 +26,8 @@
 			</div>
 		</h:form>
 	</div>
+	</ui:define>
+</ui:composition>
 
-
-</h:body>
 </html>
+
