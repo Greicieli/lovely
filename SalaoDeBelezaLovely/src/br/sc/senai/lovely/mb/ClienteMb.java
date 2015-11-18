@@ -12,14 +12,14 @@ import br.sc.senai.lovely.model.ClienteRn;
 @ManagedBean(name="clienteBean")
 @SessionScoped
 
-public class ClienteBean {
+public class ClienteMb {
 	
 	private Cliente cliente;
 	private ClienteRn controle;
 	private Cliente clienteSelecionado;
 	private List<Cliente> clientes;
 	
-	public ClienteBean() {
+	public ClienteMb() {
 		this.cliente = new Cliente();
 		this.controle = new ClienteRn();
 	}

@@ -13,14 +13,14 @@ import br.sc.senai.lovely.model.FuncionarioRn;
 @ManagedBean(name="funcionarioBean")
 @SessionScoped
 
-public class FuncionarioBean {
+public class FuncionarioMb {
 	
 	private Funcionario funcionario;
 	private FuncionarioRn controle;
 	private Funcionario funcionarioSelecionado;
 	private List<Funcionario> funcionarios;
 	
-	public FuncionarioBean(){
+	public FuncionarioMb(){
 		this.funcionario = new Funcionario();
 		this.controle = new FuncionarioRn();
 	

@@ -19,7 +19,7 @@ import br.sc.senai.lovely.model.FuncionarioRn;
 @ManagedBean(name="agendaBean")
 @SessionScoped
 
-public class AgendaBean {
+public class AgendaMb {
 	
 	private Agenda agenda;
 	private AgendaRn controleAgenda;
@@ -28,7 +28,7 @@ public class AgendaBean {
 	private List<Agenda> agendas;
 	private Agenda agendaSelecionada;
 	
-	public AgendaBean(){
+	public AgendaMb(){
 	agenda = new Agenda();
 	controleAgenda = new AgendaRn();
 	controleCliente = new ClienteRn();

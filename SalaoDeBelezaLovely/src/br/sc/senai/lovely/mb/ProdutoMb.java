@@ -15,14 +15,14 @@ import br.sc.senai.lovely.model.TipoDeProdutoRn;
 @ManagedBean(name="produtoBean")
 @SessionScoped
 
-public class ProdutoBean {
+public class ProdutoMb {
 	private Produto produto;
 	private ProdutoRn controleProduto;
 	private TipoDeProdutoRn controleTipoDeProduto;
 	private Produto produtoSelecionado;
 	private List<Produto> produtos ;
 	
-	public ProdutoBean() {
+	public ProdutoMb() {
 		produto  = new Produto();
 		controleProduto  = new ProdutoRn();
 		controleTipoDeProduto = new TipoDeProdutoRn();
