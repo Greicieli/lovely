@@ -1,4 +1,4 @@
-package modelo;
+package br.sc.senai.lovely.dominio;
 
 
 import java.util.Date;

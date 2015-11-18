@@ -1,4 +1,4 @@
-package visao;
+package br.sc.senai.lovely.mb;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import modelo.Funcionario;
-import controle.FuncionarioControle;
+import br.sc.senai.lovely.dominio.Funcionario;
+import br.sc.senai.lovely.model.FuncionarioRn;
 
 @ManagedBean(name="funcionarioBean")
 @SessionScoped
@@ -16,13 +16,13 @@ import controle.FuncionarioControle;
 public class FuncionarioBean {
 	
 	private Funcionario funcionario;
-	private FuncionarioControle controle;
+	private FuncionarioRn controle;
 	private Funcionario funcionarioSelecionado;
 	private List<Funcionario> funcionarios;
 	
 	public FuncionarioBean(){
 		this.funcionario = new Funcionario();
-		this.controle = new FuncionarioControle();
+		this.controle = new FuncionarioRn();
 	
 	}
 	public Funcionario getFuncionario() {
@@ -31,10 +31,10 @@ public class FuncionarioBean {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	public FuncionarioControle getControle() {
+	public FuncionarioRn getControle() {
 		return controle;
 	}
-	public void setControle(FuncionarioControle controle) {
+	public void setControle(FuncionarioRn controle) {
 		this.controle = controle;
 	}
 	public Funcionario getFuncionarioSelecionado() {

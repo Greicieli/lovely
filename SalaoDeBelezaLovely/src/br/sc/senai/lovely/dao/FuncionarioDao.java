@@ -1,4 +1,4 @@
-package dao;
+package br.sc.senai.lovely.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import conexao.ConnectionManager;
-import modelo.Funcionario;
+import br.sc.senai.lovely.dominio.Funcionario;
 
-public class FuncionarioDaoImp implements FuncionarioDao {
+
+public class FuncionarioDao extends Dao {
 	
 	private Connection connection;
 	private final String INSERT = "INSERT INTO funcionario( nome,  funcao, email) VALUES(?,?,?)";
@@ -18,83 +18,73 @@ public class FuncionarioDaoImp implements FuncionarioDao {
 	private final String UPDATE = "UPDATE cliente SET nome = ?, funcao = ?, email = ?, WHERE idFuncionario = ?";
 	private final String DELETE = "DELETE FROM funcionario WHERE idFuncionario = ?";
 	
-
-	@Override
+	FuncionarioDao dao;
+	
 	public void salvar(Funcionario funcionario) {
-		try{
-			PreparedStatement ps = null;
-			openConnection();
-			
-			ps = connection.prepareStatement(INSERT);
-			ps.setString(1, funcionario.getNome());
-			ps.setString(2, funcionario.getFuncao());
-			ps.setString(3, funcionario.getEmail());
-			
-ps.executeUpdate();
-			
-		}catch(SQLException ex){
-			System.out.println("Erro ao executar o insert" + ex);
-		}finally{
-			closeConnection();
-		}	
+		if(funcionario.getIdFuncionario()==0){
+			dao.salvar(funcionario);
+		}else{
+			dao.alterar(funcionario);
+		}
 	}
-
-	@Override
+	
 	public void alterar(Funcionario funcionario) {
 		try{
 			PreparedStatement ps = null;
-			openConnection();
+			
 			
 			ps = connection.prepareStatement(UPDATE);
-			ps.setString(1, funcionario.getNome());
-			ps.setString(2, funcionario.getFuncao());
-			ps.setString(3, funcionario.getEmail());
-			ps.setInt(4, funcionario.getIdFuncionario());
+			parseFuncionario(funcionario, ps);
 			
 			ps.executeUpdate();
 			
 		}catch(SQLException ex){
 			System.out.println("Erro ao executar o insert" + ex);
 		}finally{
-			closeConnection();
+			
 		}
 		
 	}
 
-	@Override
+
+	private void parseFuncionario(Funcionario funcionario, PreparedStatement ps)
+			throws SQLException {
+		ps.setString(1, funcionario.getNome());
+		ps.setString(2, funcionario.getFuncao());
+		ps.setString(3, funcionario.getEmail());
+		ps.setInt(4, funcionario.getIdFuncionario());
+	}
+
+	
 	public void excluir(Funcionario funcionario) {
 		try {
 			PreparedStatement ps = null;
-			openConnection();
+			
 			ps = connection.prepareStatement(DELETE);
 			ps.setLong(1, funcionario.getIdFuncionario());
 			ps.executeUpdate();
 		} catch (SQLException ex) {
 			System.out.println("Erro a executar o delete: " + ex);
 		} finally {
-			closeConnection();
+			
 		}
 		
 	}
 
-	@Override
+	
 	public List<Funcionario> listarTodos() {
 		List<Funcionario>funcionarios = new ArrayList<Funcionario>();
 		try {
 			PreparedStatement ps =null;
 			ResultSet rs =null;
-			openConnection();
+			
 			
 			ps = connection.prepareStatement(SELECT);
 			rs = ps.executeQuery();
 			
 			while(rs.next()){
 			Funcionario funcionario = new Funcionario();
-			funcionario.setIdFuncionario(rs.getInt("idFuncionario"));
-			funcionario.setNome(rs.getString("nome"));
-			funcionario.setFuncao(rs.getString("funcao"));
-			funcionario.setEmail(rs.getString("email"));
-			funcionarios.add(funcionario);
+			parseFuncionario(funcionarios, rs, funcionario);
 			
 				}
 			
@@ -102,37 +92,23 @@ ps.executeUpdate();
 			System.out.println("Erro ao executar !!" + ex);
 			
 		}finally{
-			closeConnection();
+			
 		}
 		return funcionarios;
 	}
 
-	@Override
-	public void openConnection() {
-		connection = ConnectionManager.getInstacne().getConnection();		
 
-		
-	}
-	@Override
-	public void closeConnection() {
-		if(!isConnectionClosed()){
-			ConnectionManager.getInstacne().closeConnection(connection);
-		}
-		
-	}
-	@Override
-	public boolean isConnectionClosed() {
-		try{
-			if(connection.isClosed()){
-				return true;
-			}
-		}catch (SQLException ex) {
-			System.out.println("Conexão com problema!");
-		}
-		return false;
+	private void parseFuncionario(List<Funcionario> funcionarios, ResultSet rs,
+			Funcionario funcionario) throws SQLException {
+		funcionario.setIdFuncionario(rs.getInt("idFuncionario"));
+		funcionario.setNome(rs.getString("nome"));
+		funcionario.setFuncao(rs.getString("funcao"));
+		funcionario.setEmail(rs.getString("email"));
+		funcionarios.add(funcionario);
 	}
 
-	@Override
+	
+		
 	public Funcionario buscarPorId(int idFuncionario) {
 		// TODO Auto-generated method stub
 		return null;

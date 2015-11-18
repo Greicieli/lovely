@@ -1,4 +1,4 @@
-package visao;
+package br.sc.senai.lovely.mb;
 
 
 import java.util.List;
@@ -8,8 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import controle.TipoDeProdutoControle;
-import modelo.TipoDeProduto;
+import br.sc.senai.lovely.dominio.TipoDeProduto;
+import br.sc.senai.lovely.model.TipoDeProdutoRn;
 
 @ManagedBean(name="tipoDeProdutoBean")
 @SessionScoped
@@ -17,13 +17,13 @@ import modelo.TipoDeProduto;
 public class TipoDeProdutoBean {
 	
 	private TipoDeProduto tipoDeProduto;
-	private TipoDeProdutoControle controle;
+	private TipoDeProdutoRn controle;
 	private TipoDeProduto  tipoDeProdutoSelecionado;
 	private List<TipoDeProduto> tipoDeProdutos;
 
 	public TipoDeProdutoBean(){
 		this.tipoDeProduto = new TipoDeProduto();
-		this.controle = new TipoDeProdutoControle();
+		this.controle = new TipoDeProdutoRn();
 	}
 
 	public TipoDeProduto getTipoDeProduto() {
@@ -34,11 +34,11 @@ public class TipoDeProdutoBean {
 		this.tipoDeProduto = tipoDeProduto;
 	}
 
-	public TipoDeProdutoControle getControle() {
+	public TipoDeProdutoRn getControle() {
 		return controle;
 	}
 
-	public void setControle(TipoDeProdutoControle controle) {
+	public void setControle(TipoDeProdutoRn controle) {
 		this.controle = controle;
 	}
 

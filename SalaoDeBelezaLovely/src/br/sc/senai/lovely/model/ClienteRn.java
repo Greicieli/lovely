@@ -1,12 +1,13 @@
-package controle;
+package br.sc.senai.lovely.model;
 
 import java.util.List;
 
-import dao.ClienteDao;
-import dao.DAOFactory;
-import modelo.Cliente;
+import br.sc.senai.lovely.dao.ClienteDao;
+import br.sc.senai.lovely.dominio.Cliente;
 
-public class ClienteControle {
+public class ClienteRn {
+	ClienteDao dao;
+	
 	public void salvar(Cliente cliente) throws Exception{
 		if(cliente.getNome().trim().isEmpty()){
 			throw new Exception("O Nome é obrigatório!");
@@ -18,22 +19,16 @@ public class ClienteControle {
 			throw new Exception("O e-mail é obrigatório!");
 		}
 		
-		ClienteDao clienteDao = DAOFactory.getClienteDao();
-		if (cliente.getIdCliente() == 0) {
-			clienteDao.salvar(cliente);
-		} else {
-			clienteDao.alterar(cliente);
-		}
+		
+		
 		
 	}
 	
 	public void excluir(Cliente cliente){
-		ClienteDao ClienteDao = DAOFactory.getClienteDao();
-		ClienteDao.excluir(cliente);
+		 dao.excluir(cliente);
 	}
 	public List<Cliente> listarTodos() {
-		ClienteDao clienteDao = DAOFactory.getClienteDao();
-		return clienteDao.listarTodos();
+		 return dao.listarTodos();
 	}
 
 }

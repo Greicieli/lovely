@@ -1,12 +1,14 @@
-package controle;
+package br.sc.senai.lovely.model;
 
 import java.util.List;
 
-import dao.AgendaDao;
-import dao.DAOFactory;
-import modelo.Agenda;
+import br.sc.senai.lovely.dao.AgendaDao;
+import br.sc.senai.lovely.dominio.Agenda;
 
-public class AgendaControle {
+
+
+public class AgendaRn {
+	private AgendaDao dao;
 	
 	public void salvar(Agenda agenda) throws Exception {
 		if(agenda.getCliente()== null || agenda.getCliente().getIdCliente() == 0){
@@ -23,22 +25,20 @@ public class AgendaControle {
 			throw new Exception("O Procedimento é obrigatório");
 		}
 		
-		AgendaDao agendaDao =DAOFactory.getAgendaDao();
-		if(agenda.getIdAgendamento() ==0){
-			agendaDao.salvar(agenda);
-		}else{
-			agendaDao.alterar(agenda);
-		}
+		
+		dao.salvar(agenda);
 	}
 		
-	public void excluir(Agenda agenda) {
-		AgendaDao agendaDao = DAOFactory.getAgendaDao();
-		agendaDao.excluir(agenda);
-	}
 	
-	public List<Agenda> listarTodos() {
-		AgendaDao agendaDao = DAOFactory.getAgendaDao();
-		return agendaDao.listarTodos();	
+	public List<Agenda> listar() throws Exception {
+		return dao.listarTodos();
 	}
-	
+
+	//public Agenda buscarPorId(Long id) throws Exception{
+		//return dao.buscarPorId(id);
+	//}
+
+	public void excluir(Long id) throws Exception {
+		// dao.excluir(id);
+	}
 }

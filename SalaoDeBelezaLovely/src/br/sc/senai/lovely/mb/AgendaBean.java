@@ -1,4 +1,4 @@
-package visao;
+package br.sc.senai.lovely.mb;
 
 import java.util.List;
 
@@ -7,12 +7,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import controle.AgendaControle;
-import controle.ClienteControle;
-import controle.FuncionarioControle;
-import modelo.Agenda;
-import modelo.Cliente;
-import modelo.Funcionario;
+import br.sc.senai.lovely.dominio.Agenda;
+import br.sc.senai.lovely.dominio.Cliente;
+import br.sc.senai.lovely.dominio.Funcionario;
+import br.sc.senai.lovely.model.AgendaRn;
+import br.sc.senai.lovely.model.ClienteRn;
+import br.sc.senai.lovely.model.FuncionarioRn;
 
 
 
@@ -22,17 +22,17 @@ import modelo.Funcionario;
 public class AgendaBean {
 	
 	private Agenda agenda;
-	private AgendaControle controleAgenda;
-	private ClienteControle controleCliente;
-	private FuncionarioControle controleFuncionario;
+	private AgendaRn controleAgenda;
+	private ClienteRn controleCliente;
+	private FuncionarioRn controleFuncionario;
 	private List<Agenda> agendas;
 	private Agenda agendaSelecionada;
 	
 	public AgendaBean(){
 	agenda = new Agenda();
-	controleAgenda = new AgendaControle();
-	controleCliente = new ClienteControle();
-	controleFuncionario = new FuncionarioControle();
+	controleAgenda = new AgendaRn();
+	controleCliente = new ClienteRn();
+	controleFuncionario = new FuncionarioRn();
 	
 	}
 
@@ -44,34 +44,32 @@ public class AgendaBean {
 		this.agenda = agenda;
 	}
 
-	public AgendaControle getControleAgenda() {
+	public AgendaRn getControleAgenda() {
 		return controleAgenda;
 	}
 
-	public void setControleAgenda(AgendaControle controleAgenda) {
+	public void setControleAgenda(AgendaRn controleAgenda) {
 		this.controleAgenda = controleAgenda;
 	}
 
-	public ClienteControle getControleCliente() {
+	public ClienteRn getControleCliente() {
 		return controleCliente;
 	}
 
-	public void setControleCliente(ClienteControle controleCliente) {
+	public void setControleCliente(ClienteRn controleCliente) {
 		this.controleCliente = controleCliente;
 	}
 
-	public FuncionarioControle getControleFuncionario() {
+	public FuncionarioRn getControleFuncionario() {
 		return controleFuncionario;
 	}
 
-	public void setControleFuncionario(FuncionarioControle controleFuncionario) {
+	public void setControleFuncionario(FuncionarioRn controleFuncionario) {
 		this.controleFuncionario = controleFuncionario;
 	}
 
 	public List<Agenda> getAgendas() {
-		if (agendas== null) {
-			agendas = controleAgenda.listarTodos();
-		}
+		
 		return agendas;
 	}
 
@@ -114,13 +112,7 @@ public class AgendaBean {
 		return "cadastroAgenda";
 	}
 	
-	public String excluir() {
-		controleAgenda.excluir(agendaSelecionada);
-		agendas.remove(agendaSelecionada);
-		agendaSelecionada = null;
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Agenda removida com sucesso!", ""));
-		return null;
-	}
+	
 	
 	public List<Funcionario> listarFuncionarios() {
 		return controleFuncionario.listarTodos();

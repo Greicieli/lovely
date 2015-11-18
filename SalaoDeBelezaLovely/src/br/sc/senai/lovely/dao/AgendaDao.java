@@ -1,4 +1,4 @@
-package dao;
+package br.sc.senai.lovely.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,11 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import conexao.ConnectionManager;
-import modelo.Agenda;
+import br.sc.senai.lovely.dominio.Agenda;
 
 
-public class AgendaDaoImp implements AgendaDao {
+public class AgendaDao extends Dao  {
 	
 	private Connection connection;
 	private final String INSERT = "INSERT INTO agenda(data, hora, procedimento, idfuncionario, idcliente) VALUES(?,?,?,?,?)";
@@ -19,46 +18,34 @@ public class AgendaDaoImp implements AgendaDao {
 	private final String UPDATE = "UPDATE agenda SET  data = ?, hora = ?, procedimento = ?, idfuncionario = ?, idcliente = ? WHERE idagendamento = ?";
 	private final String DELETE = "DELETE FROM agenda WHERE idagendamento = ?";
 
-	 public AgendaDaoImp() {
-		connection = ConnectionManager.getInstacne().getConnection();
-	}
+	
 
-	@Override
-	public void salvar(Agenda agenda) {
-		try{
-			PreparedStatement ps = null;
-			openConnection();
-			
-			ps = connection.prepareStatement(INSERT);
-			ps.setObject(1, agenda.getData());
-			ps.setObject(2, agenda.getHora());
-			ps.setString(3, agenda.getProcedimento());
-			ps.setInt(4, agenda.getFuncionario().getIdFuncionario());
-			ps.setInt(5, agenda.getCliente().getIdCliente());
-			
-				
-			ps.executeUpdate();
-			
-		}catch(SQLException ex){
-			System.out.println("Erro ao executar o insert" + ex);
-		}finally{
-			closeConnection();
+	public void salvar(Agenda agenda ) {
+		if(agenda.getIdAgendamento() ==0){
+			salvar(agenda);
+		}else{
+			alterar(agenda);
 		}
 		
 	}
 
-	@Override
+	private void parseAgenda(Agenda agenda, PreparedStatement ps)
+			throws SQLException {
+		ps.setObject(1, agenda.getData());
+		ps.setObject(2, agenda.getHora());
+		ps.setString(3, agenda.getProcedimento());
+		ps.setInt(4, agenda.getFuncionario().getIdFuncionario());
+		ps.setInt(5, agenda.getCliente().getIdCliente());
+	}
+
+	
 	public void alterar(Agenda agenda) {
 		try{
 			PreparedStatement ps = null;
-			openConnection();
+		
 			
 			ps = connection.prepareStatement(UPDATE);
-			ps.setObject(1, agenda.getData());
-			ps.setObject(2, agenda.getHora());
-			ps.setString(3, agenda.getProcedimento());
-			ps.setInt(4, agenda.getFuncionario().getIdFuncionario());
-			ps.setInt(5, agenda.getCliente().getIdCliente());
+			parseAgenda(agenda, ps);
 			ps.setInt(6, agenda.getIdAgendamento());
 			
 				
@@ -67,85 +54,58 @@ public class AgendaDaoImp implements AgendaDao {
 		}catch(SQLException ex){
 			System.out.println("Erro ao executar o insert" + ex);
 		}finally{
-			closeConnection();
+			
 		}
 		
 	}
 
-	@Override
+	
 	public void excluir(Agenda agenda) {
 		try {
 			PreparedStatement ps = null;
-			openConnection();
+			
 			ps = connection.prepareStatement(DELETE);
 			ps.setLong(1, agenda.getIdAgendamento());
 			ps.executeUpdate();
 		} catch (SQLException ex) {
 			System.out.println("Erro ao executar o delete: " + ex);
 		} finally {
-			closeConnection();
 		}
 		
 	}
 
-	@Override
+	
 	public List<Agenda> listarTodos() {
 		List<Agenda> agendamento = new ArrayList<Agenda>();
 		try {
 			PreparedStatement ps = null;
 			ResultSet rs = null;
-			openConnection();
+		
 			ps = connection.prepareStatement(SELECT);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
+				//FuncionarioDao funcionarioDao = dao.getFuncionarioDao();
+				//ClienteDao clienteDao = dao.getClienteDao();
 				Agenda agenda = new Agenda();
 				agenda.setIdAgendamento(rs.getInt("idagendamento"));
 				agenda.setData(rs.getDate("data"));
 				agenda.setHora(rs.getTime("hora"));
 				agenda.setProcedimento(rs.getString("procedimento"));
-				FuncionarioDao funcionarioDao = DAOFactory.getFuncionarioDao();
-				agenda.setFuncionario(funcionarioDao.buscarPorId(rs.getInt("idfuncionario")));
-				
-				ClienteDao clienteDao = DAOFactory.getClienteDao();
-				agenda.setCliente(clienteDao.buscarPorId(rs.getInt("idcliente")));
+				//agenda.setFuncionario(funcionarioDao.buscarPorId(rs.getInt("idfuncionario")));
+				//agenda.setCliente(clienteDao.buscarPorId(rs.getInt("idcliente")));
 				
 				agendamento.add(agenda);
 			}
 		} catch (SQLException ex) {
 			System.out.println("Erro ao executar o select da locação: " + ex);
 		} finally {
-			closeConnection();
+			
 		}
 		return agendamento;
 	}
 
-
-	@Override
-	public void openConnection() {
-		connection = ConnectionManager.getInstacne().getConnection();		
-	}
-
-	@Override
-	public void closeConnection() {
-		if (!isConnectionClosed()) {
-			ConnectionManager.getInstacne().closeConnection(connection);
-		}		
-	}
-
-	@Override
-	public boolean isConnectionClosed() {
-		try {
-			if (connection.isClosed()) {
-				return true;
-			}
-		} catch (SQLException ex) {
-			System.out.println("Conexão com problema!");
-		}
-		return false;
-	}
-
-	@Override
+	
 	public Agenda buscarPorId(int idAgendamento) {
 		// TODO Auto-generated method stub
 		return null;

@@ -1,4 +1,4 @@
-package visao;
+package br.sc.senai.lovely.mb;
 
 import java.util.List;
 
@@ -7,21 +7,21 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import controle.ClienteControle;
-import modelo.Cliente;
+import br.sc.senai.lovely.dominio.Cliente;
+import br.sc.senai.lovely.model.ClienteRn;
 @ManagedBean(name="clienteBean")
 @SessionScoped
 
 public class ClienteBean {
 	
 	private Cliente cliente;
-	private ClienteControle controle;
+	private ClienteRn controle;
 	private Cliente clienteSelecionado;
 	private List<Cliente> clientes;
 	
 	public ClienteBean() {
 		this.cliente = new Cliente();
-		this.controle = new ClienteControle();
+		this.controle = new ClienteRn();
 	}
 
 	public Cliente getCliente() {
@@ -32,11 +32,11 @@ public class ClienteBean {
 		this.cliente = cliente;
 	}
 
-	public ClienteControle getControle() {
+	public ClienteRn getControle() {
 		return controle;
 	}
 
-	public void setControle(ClienteControle controle) {
+	public void setControle(ClienteRn controle) {
 		this.controle = controle;
 	}
 
