@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="WEB-INF/template/padrao.xhtml">
+<ui:composition template="/WEB-INF/template/padrao.xhtml">
 	<ui:define name="conteudo">
 		
 		<div id="cadastro">
@@ -14,24 +14,24 @@
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome:" for="nome_id" />
 					<h:inputText id="nome_id"
-						value="#{funcionarioBean.funcionario.nome}" required="true"
+						value="#{funcionarioMb.funcionario.nome}" required="true"
 						requiredMessage="O nome é obrigatório!" />
 
 					<h:outputLabel value="Função:  " for="funcao_id" />
 					<h:inputText id="funcao_id"
-						value="#{funcionarioBean.funcionario.funcao}" required="true"
+						value="#{funcionarioMb.funcionario.funcao}" required="true"
 						requiredMessage="O Telefone é obrigatório!" maxlength="15" />
 
 					<h:outputLabel value="E-mail:" for="email_id" />
 					<h:inputText id="email_id"
-						value="#{funcionarioBean.funcionario.email}" required="true"
+						value="#{funcionarioMb.funcionario.email}" required="true"
 						requiredMessage="O E-mail é obrigatório!" />
 
 
 
 					<h:commandButton value="Listar Funcionarios"
-						action="#{funcionarioBean.voltar}" immediate="true" />
-					<h:commandButton value="Salvar" action="#{funcionarioBean.salvar}" />
+						action="#{funcionarioMb.voltar}" immediate="true" />
+					<h:commandButton value="Salvar" action="#{funcionarioMb.salvar}" />
 
 				</h:panelGrid>
 			</h:form>

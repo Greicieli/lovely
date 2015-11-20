@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="WEB-INF/template/padrao.xhtml">
+<ui:composition template="/WEB-INF/template/padrao.xhtml">
 	<ui:define name="conteudo">
 
 		<div id="cadastro">
@@ -13,27 +13,27 @@
 
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome:" for="nome_id" />
-					<h:inputText id="nome_id" value="#{clienteBean.cliente.nome}"
+					<h:inputText id="nome_id" value="#{clienteMb.cliente.nome}"
 						required="true" requiredMessage="O nome é obrigatório!" />
 
 					<h:outputLabel value="Telefone: " for="telefone_id" />
 					<h:inputText id="telefone_id"
-						value="#{clienteBean.cliente.telefone}" required="true"
+						value="#{clienteMb.cliente.telefone}" required="true"
 						requiredMessage="O Telefone é obrigatório!" maxlength="15" />
 
 					<h:outputLabel value="E-mail:" for="email_id" />
-					<h:inputText id="email_id" value="#{clienteBean.cliente.email}"
+					<h:inputText id="email_id" value="#{clienteMb.cliente.email}"
 						required="true" requiredMessage="O E-mail é obrigatório!" />
 
 
 					<h:outputLabel value="Endereço:" for="endereco_id" />
 					<h:inputText id="endereco_id"
-						value="#{clienteBean.cliente.endereco}" required="true"
+						value="#{clienteMb.cliente.endereco}" required="true"
 						requiredMessage="O endereço é obrigatório!" />
 
 					<h:commandButton value="Listar Clientes"
-						action="#{clienteBean.voltar}" immediate="true" />
-					<h:commandButton value="Salvar" action="#{clienteBean.salvar}" />
+						action="#{clienteMb.voltar}" immediate="true" />
+					<h:commandButton value="Salvar" action="#{clienteMb.salvar}" />
 
 				</h:panelGrid>
 		</h:form>
