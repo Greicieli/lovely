@@ -13,21 +13,21 @@
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Descrição:" for="decricao_id" />
 					<h:inputText id="descricao_id"
-						value="#{produtoBean.produto.descricao}" required="true"
+						value="#{produtoMb.produto.descricao}" required="true"
 						requiredMessage="A descrição é obrigatório!" />
 
 					<h:outputLabel value="Valor: " for="valor_id" />
-					<h:inputText id="valor_id" value="#{produtoBean.produto.valor}"
+					<h:inputText id="valor_id" value="#{produtoMb.produto.valor}"
 						required="true" requiredMessage="O valor é obrigatório!" />
 
 					<h:outputLabel value="Quantidade:" for="quantidade_id" />
 					<h:inputText id="quantidade_id"
-						value="#{produtoBean.produto.quantidade}" required="true"
+						value="#{produtoMb.produto.quantidade}" required="true"
 						requiredMessage="A quantidade é obrigatória!" />
 
 				<h:outputLabel value="Tipo de Prouto: " for="tipoDeProduto_id" />
 					<h:selectOneMenu id="tipoDeProduto_id"
-						value="#{produtoBean.produto.tipoDeProduto.idTipoDeProduto}">
+						value="#{produtoMb.produto.tipoDeProduto.idTipoDeProduto}">
 						<f:selectItems value="#{produtoBean.listarTipoDeProdutos()}"
 							var="tipoDeProduto" itemLabel="#{tipoDeProduto.tipoDeProduto}"
 							itemValue="#{tipoDeProduto.idTipoDeProduto}" />
@@ -36,8 +36,8 @@
 
 
 					<h:commandButton value="Listar Produtos"
-						action="#{produtoBean.voltar}" immediate="true" />
-					<h:commandButton value="Enviar" action="#{produtoBean.salvar}" />
+						action="#{produtoMb.voltar}" immediate="true" />
+					<h:commandButton value="Enviar" action="#{produtoMb.salvar}" />
 
 
 				</h:panelGrid>
