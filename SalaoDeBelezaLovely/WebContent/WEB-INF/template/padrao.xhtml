@@ -39,12 +39,12 @@
 				<ul>
 					<li><h:commandLink value="Home" action="index.xhtml" /></li>
 					<li><h:commandLink value="Produtos"
-							action="#{produtoMb.novo}" /></li>
-					<li><h:commandLink value="Agenda" action="#{agendaMb.novo}" /></li>
+							action="/admin/cadastroProduto.xhtml" /></li>
+					<li><h:commandLink value="Agenda" action="/admin/cadastroAgenda.xhtml" /></li>
 					<li><h:commandLink value="Clientes"
-							action="#{clienteMb.novo}" /></li>
+							action="/admin/cadastroCliente.xhtml" /></li>
 					<li><h:commandLink value="Funcionarios"
-							action="#{funcionarioMb.novo}" /></li>
+							action="/admin/cadastroFuncionario.xhtml" /></li>
 
 				</ul>
 			</div>
@@ -56,7 +56,7 @@
 	<ui:insert name="conteudo">
 
 	</ui:insert>
-
+	
 	<div id="rodape">
 		<br></br>Lovely Salão de Beleza <br>Rua Bocaiuva, 1900<a
 			id="mapa"

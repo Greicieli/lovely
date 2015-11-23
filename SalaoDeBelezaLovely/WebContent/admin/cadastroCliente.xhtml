@@ -1,53 +1,10 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-	<link href="css/estilo.css" rel="stylesheet" />
-	<!-- Latest compiled and minified CSS -->
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-
-	<!-- Optional theme -->
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<title>Salão de Beleza Lovely</title>
-</h:head>
-<h:body>
-	<div id="logo">
-		<form>
-			<img src="img/logo.png" alt="" width="400px" height="200px"
-				align="top" />
-		</form>
-	</div>
-	<div id="fundo">
-		<h:form>
-			<div id="menu">
-
-				<ul>
-					<li><h:commandLink value="Home" action="index.xhtml" /></li>
-					<li><h:commandLink value="Produtos"
-							action="#{produtoBean.novo}" /></li>
-					<li><h:commandLink value="Agenda" 
-							action="#{agendaBean.novo}" /></li>
-					<li><h:commandLink value="Clientes"
-							action="#{clienteBean.novo}" /></li>
-					<li><h:commandLink value="Funcionarios"
-							action="#{funcionarioBean.novo}" /></li>
-
-				</ul>
-			</div>
-
-		</h:form>
+<ui:composition template="/WEB-INF/template/padrao.xhtml">
+	<ui:define name="conteudo">
 
 		<div id="cadastro">
 			<h:form>
@@ -56,38 +13,34 @@
 
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome:" for="nome_id" />
-					<h:inputText id="nome_id" value="#{clienteBean.cliente.nome}"
-						required="true" requiredMessage="O nome é obrigatório!" />
+					<h:inputText id="nome_id" value="#{clienteMb.cliente.nome}"
+						required="true" requiredMessage="O nome Ã© obrigatÃ³rio!" />
 
 					<h:outputLabel value="Telefone: " for="telefone_id" />
 					<h:inputText id="telefone_id"
-						value="#{clienteBean.cliente.telefone}" required="true"
-						requiredMessage="O Telefone é obrigatório!" maxlength="15" />
+						value="#{clienteMb.cliente.telefone}" required="true"
+						requiredMessage="O Telefone Ã© obrigatÃ³rio!" maxlength="15" />
 
 					<h:outputLabel value="E-mail:" for="email_id" />
-					<h:inputText id="email_id" value="#{clienteBean.cliente.email}"
-						required="true" requiredMessage="O E-mail é obrigatório!" />
+					<h:inputText id="email_id" value="#{clienteMb.cliente.email}"
+						required="true" requiredMessage="O E-mail Ã© obrigatÃ³rio!" />
 
 
-					<h:outputLabel value="Endereço:" for="endereco_id" />
+					<h:outputLabel value="EndereÃ§o:" for="endereco_id" />
 					<h:inputText id="endereco_id"
-						value="#{clienteBean.cliente.endereco}" required="true"
-						requiredMessage="O endereço é obrigatório!" />
+						value="#{clienteMb.cliente.endereco}" required="true"
+						requiredMessage="O endereÃ§o Ã© obrigatÃ³rio!" />
 
 					<h:commandButton value="Listar Clientes"
-						action="#{clienteBean.voltar}" immediate="true" />
-					<h:commandButton value="Salvar" action="#{clienteBean.salvar}" />
+						action="#{clienteMb.voltar}" immediate="true" />
+					<h:commandButton value="Salvar" action="#{clienteMb.salvar}" />
 
 				</h:panelGrid>
-			</h:form>
+		</h:form>
+		
+		
 		</div>
-		</div>
-		<div id="rodape">
-		<br></br>Lovely Salão de Beleza
-		<br>Rua Bocaiuva, 1900<a id= "mapa" href="https://www.google.com.br/maps/place/Beiramar+Shopping+Center/@-27.5913708,-48.5398807,14z/data=!4m2!3m1!1s0x0:0x213691a7fa55d9a4?hl=pt-br" target="_blank"> Ver mapa</a>
-		<br>Contato: (48) 3039-9078</br></br>
-	</div>
+	</ui:define>
+</ui:composition>
 
-
-</h:body>
 </html>

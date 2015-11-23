@@ -1,32 +1,12 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Salão de beleza Lovely</title>
-	<link href="css/estilo.css" rel="stylesheet" />
-</h:head>
-<h:body>
-	<div id="fundo">
-		<h:form>
-			<div id="menu">
-			<div align="center"><img src="img/logo.png" alt=""  width="600px" height="250px" align="top" /></div>
-				<ul>
 
-					<li><h:commandLink value="Home" 
-							action="index.xhtml" /></li>
-					<li><h:commandLink value="Produtos" /></li>
-					<li><h:commandLink value="Agenda" /></li>
-					<li><h:commandLink value="Clientes"
-							action="#{clienteBean.novo}" /></li>
-					<li><h:commandLink value="Funcionarios"
-							action="#{funcionarioBean.novo}" /></li>
+<ui:composition template="WEB-INF/template/padrao.xhtml">
+	<ui:define name="conteudo">
 
-				</ul>
-			</div>
-		</h:form>
+
 		<h:form>
 			<h1>Lista de Tipo De Produto</h1>
 			<h:messages />
@@ -37,23 +17,27 @@
 					</f:facet>
 					<h:outputText value="#{tipoDeProduto.tipoDeProduto}" />
 				</h:column>
-				
+
 				<h:column>
-					<h:commandLink action="#{tipoDeProdutoBean.alterar}" value="Alterar"
-						title="Alterar">
+					<h:commandLink action="#{tipoDeProdutoBean.alterar}"
+						value="Alterar" title="Alterar">
 						<f:setPropertyActionListener
-							target="#{tipoDeProdutoBean.tipoDeProdutoSelecionado}" value="#{tipoDeProduto}" />
+							target="#{tipoDeProdutoBean.tipoDeProdutoSelecionado}"
+							value="#{tipoDeProduto}" />
 					</h:commandLink>
 				</h:column>
 				<h:column>
-					<h:commandLink action="#{tipoDeProdutoBean.excluir}" value="Excluir"
-						title="Excluir">
+					<h:commandLink action="#{tipoDeProdutoBean.excluir}"
+						value="Excluir" title="Excluir">
 						<f:setPropertyActionListener
-							target="#{tipoDeProdutoBean.tipoDeProdutoSelecionado}" value="#{tipoDeProduto}" />
+							target="#{tipoDeProdutoBean.tipoDeProdutoSelecionado}"
+							value="#{tipoDeProduto}" />
 					</h:commandLink>
 				</h:column>
-			</h:dataTable>
 		</h:form>
-	</div>
-</h:body>
+		
+		
+		</ui:define>
+</ui:composition>
+
 </html>
