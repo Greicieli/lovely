@@ -2,31 +2,18 @@ package br.sc.senai.lovely.dominio;
 
 public class Produto {
 
-	private int idProduto;
+	private long idProduto;
 	private String descricao;
 	private double valor;
 	private int quantidade;
 	private TipoDeProduto tipoDeProduto;
 	
-	public Produto(){
-		tipoDeProduto = new TipoDeProduto();
-	}
-
-	public Produto(int idPtoduto, String descricao, double valor,
-			int quantidade, TipoDeProduto idTipoDeProduto) {
-		super();
-		this.idProduto = idPtoduto;
-		this.descricao = descricao;
-		this.valor = valor;
-		this.quantidade = quantidade;
-		this.tipoDeProduto = idTipoDeProduto;
-	}
-
-	public int getIdProduto() {
+	
+	public long getIdProduto() {
 		return idProduto;
 	}
 
-	public void setIdProduto(int idProduto) {
+	public void setIdProduto(long idProduto) {
 		this.idProduto = idProduto;
 	}
 

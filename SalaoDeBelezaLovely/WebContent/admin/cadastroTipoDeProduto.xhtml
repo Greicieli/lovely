@@ -14,13 +14,13 @@
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Tipo De Produto:" for="tipoDeProduto_id" />
 					<h:inputText id="tipoDeProduto_id"
-						value="#{tipoDeProdutoBean.tipoDeProduto.tipoDeProduto}"
+						value="#{tipoDeProdutoMb.tipoDeProduto.tipoDeProduto}"
 						required="true" requiredMessage="O tipo de peoduto é obrigatório!" />
 
 					<h:commandButton value="Listar Tipo de Produtos"
-						action="#{tipoDeProdutoBean.voltar}" immediate="true" />
+						action="#{tipoDeProdutoMb.voltar}" immediate="true" />
 					<h:commandButton value="Salvar"
-						action="#{tipoDeProdutoBean.salvar}" />
+						action="#{tipoDeProdutoMb.salvar}" />
 
 				</h:panelGrid>
 			</div>
