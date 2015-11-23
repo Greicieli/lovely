@@ -3,10 +3,11 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="WEB-INF/template/padrao.xhtml">
+<ui:composition template="/WEB-INF/template/padrao.xhtml">
 	<ui:define name="conteudo">
 	
-	
+	<div id="cadastro">
+			<h:form>
 				<h:messages />
 				<h1>Cadastro de Produtos</h1>
 
@@ -25,10 +26,10 @@
 						value="#{produtoMb.produto.quantidade}" required="true"
 						requiredMessage="A quantidade é obrigatória!" />
 
-				<h:outputLabel value="Tipo de Prouto: " for="tipoDeProduto_id" />
+				<h:outputLabel value="Tipo de Produto: " for="tipoDeProduto_id" />
 					<h:selectOneMenu id="tipoDeProduto_id"
 						value="#{produtoMb.produto.tipoDeProduto.idTipoDeProduto}">
-						<f:selectItems value="#{produtoBean.listarTipoDeProdutos()}"
+						<f:selectItems value="#{produtoMb.listarTipoDeProdutos()}"
 							var="tipoDeProduto" itemLabel="#{tipoDeProduto.tipoDeProduto}"
 							itemValue="#{tipoDeProduto.idTipoDeProduto}" />
 					</h:selectOneMenu>
@@ -41,7 +42,8 @@
 
 
 				</h:panelGrid>
-			
+			</h:form>
+			</div>
 	</ui:define>
 </ui:composition>
 

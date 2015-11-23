@@ -2,100 +2,88 @@ package br.sc.senai.lovely.mb;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+
 
 import br.sc.senai.lovely.dominio.Funcionario;
 import br.sc.senai.lovely.model.FuncionarioRn;
 
-@ManagedBean(name="funcionarioBean")
-@SessionScoped
+@ManagedBean
+
 
 public class FuncionarioMb {
 	
-	private Funcionario funcionario;
-	private FuncionarioRn controle;
-	private Funcionario funcionarioSelecionado;
 	private List<Funcionario> funcionarios;
+	private Funcionario funcionario;
+	private FuncionarioRn rn;
 	
-	public FuncionarioMb(){
-		this.funcionario = new Funcionario();
-		this.controle = new FuncionarioRn();
+	
+	@PostConstruct
+	public void init(){
+		rn = new FuncionarioRn();
+		funcionario = new Funcionario();
 	
 	}
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-	public FuncionarioRn getControle() {
-		return controle;
-	}
-	public void setControle(FuncionarioRn controle) {
-		this.controle = controle;
-	}
-	public Funcionario getFuncionarioSelecionado() {
-		return funcionarioSelecionado;
-	}
-	public void setFuncionarioSelecionado(Funcionario funcionarioSelecionado) {
-		this.funcionarioSelecionado = funcionarioSelecionado;
-	}
+	
+	
 	public List<Funcionario> getFuncionarios() {
-		if (funcionarios == null) {
-			funcionarios = controle.listarTodos();
-		}
 		return funcionarios;
 	}
+
+
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		this.funcionarios = funcionarios;
 	}
+
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+
 	
-	public String salvar() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage message = null;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+
+	public FuncionarioRn getRn() {
+		return rn;
+	}
+
+
+	public void setRn(FuncionarioRn rn) {
+		this.rn = rn;
+	}
+
+	public String salvar(){
 		try {
-			controle.salvar(funcionario);
-			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Funcionario cadastrado com sucesso!", "");
-			context.addMessage(null, message);
-			funcionario = new Funcionario();
-			funcionarios = null;
+			rn.salvar(funcionario);
 		} catch (Exception e) {
-			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), "");
-			context.addMessage(null, message);
+			e.printStackTrace();
+			return "";
 		}
-		
-		return null;
-		
-	}
-	
-	public String novo() {
-		funcionario = new Funcionario();
-		return "cadastroFuncionario";
-	}
-	
-	public String alterar() {
-		funcionario = funcionarioSelecionado;
-		funcionarioSelecionado = null;
-		return "cadastroFuncionario";
-	}
-	
-	public String excluir() {
-		controle.excluir(funcionarioSelecionado);
-		funcionarios.remove(funcionarioSelecionado);
-		funcionarioSelecionado = null;
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Funcionario removido com sucesso!", ""));
-		return null;
-	}
-	
-	public String voltar() {
 		return "listarFuncionario";
 	}
 	
+	public String excluir(String idParam){
+		Long idFuncionario = Long.parseLong(idParam);
+		try {
+			rn.excluir(idFuncionario);
+			funcionarios = null;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 	
-
+	public String editar(String idParam) throws Exception{
+		Long id = Long.parseLong(idParam);
+	//	funcionario = rn.buscarPorId(id);
+		return "cadFicha";
+	}
+	
 }
 
 

@@ -114,9 +114,9 @@ public class AgendaMb {
 	
 	
 	
-	public List<Funcionario> listarFuncionarios() {
-		return controleFuncionario.listarTodos();
-	}
+	//public List<Funcionario> listarFuncionarios() {
+	//	return dao.listarTodos();
+	//}
 	
 	public List<Cliente> listarClientes() {
 		return controleCliente.listarTodos();
