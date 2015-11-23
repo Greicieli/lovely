@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admin` (
-  `idAdmin` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `login` varchar(80) NOT NULL,
-  `senha` varchar(80) NOT NULL,
-  `fk_idFuncionario` int(10) unsigned NOT NULL,
+  `idAdmin` bigint(10) NOT NULL AUTO_INCREMENT,
+  `login` varchar(80) DEFAULT NULL,
+  `senha` varchar(80) DEFAULT NULL,
+  `fk_idFuncionario` bigint(10) unsigned NOT NULL,
   PRIMARY KEY (`idAdmin`),
-  KEY `fk_idFuncionario` (`fk_idFuncionario`),
-  CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`fk_idFuncionario`) REFERENCES `funcionario` (`idFuncionario`) ON DELETE CASCADE
+  UNIQUE KEY `idAdmin_UNIQUE` (`idAdmin`),
+  KEY `fk_idFuncionario` (`fk_idFuncionario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,17 +50,15 @@ DROP TABLE IF EXISTS `agenda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `agenda` (
-  `idAgendamento` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `data` date NOT NULL,
-  `hora` date NOT NULL,
-  `procedimento` varchar(80) NOT NULL,
-  `idCliente` int(10) unsigned NOT NULL,
-  `idFuncionario` int(10) unsigned NOT NULL,
+  `idAgendamento` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+  `data` date DEFAULT NULL,
+  `hora` date DEFAULT NULL,
+  `procedimento` varchar(80) DEFAULT NULL,
+  `idCliente` bigint(10) unsigned NOT NULL,
+  `idFuncionario` bigint(10) unsigned NOT NULL,
   PRIMARY KEY (`idAgendamento`),
   KEY `idCliente` (`idCliente`),
-  KEY `idFuncionario` (`idFuncionario`),
-  CONSTRAINT `agenda_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE CASCADE,
-  CONSTRAINT `agenda_ibfk_2` FOREIGN KEY (`idFuncionario`) REFERENCES `funcionario` (`idFuncionario`) ON DELETE CASCADE
+  KEY `idFuncionario` (`idFuncionario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,12 +80,13 @@ DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cliente` (
-  `idCliente` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nome` varchar(80) NOT NULL,
-  `telefone` varchar(80) NOT NULL,
-  `email` varchar(80) NOT NULL,
-  `endereco` varchar(80) NOT NULL,
-  PRIMARY KEY (`idCliente`)
+  `idCliente` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(80) DEFAULT NULL,
+  `telefone` varchar(80) DEFAULT NULL,
+  `email` varchar(80) DEFAULT NULL,
+  `endereco` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`idCliente`),
+  UNIQUE KEY `idCliente_UNIQUE` (`idCliente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -109,11 +108,12 @@ DROP TABLE IF EXISTS `funcionario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `funcionario` (
-  `idFuncionario` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nome` varchar(80) NOT NULL,
-  `funcao` varchar(80) NOT NULL,
-  `email` varchar(80) NOT NULL,
-  PRIMARY KEY (`idFuncionario`)
+  `idFuncionario` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(80) DEFAULT NULL,
+  `funcao` varchar(80) DEFAULT NULL,
+  `email` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`idFuncionario`),
+  UNIQUE KEY `idFuncionario_UNIQUE` (`idFuncionario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,14 +135,13 @@ DROP TABLE IF EXISTS `produto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `produto` (
-  `idProduto` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idProduto` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `descricao` varchar(80) NOT NULL,
   `valor` float NOT NULL,
   `quantidade` int(10) NOT NULL,
-  `fk_idTipoDeProduto` int(10) unsigned NOT NULL,
+  `fk_idTipoDeProduto` bigint(10) unsigned NOT NULL,
   PRIMARY KEY (`idProduto`),
-  KEY `fk_idTipoDeProduto` (`fk_idTipoDeProduto`),
-  CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`fk_idTipoDeProduto`) REFERENCES `tipodeproduto` (`idTipoDeProduto`) ON DELETE CASCADE
+  KEY `fk_idTipoDeProduto` (`fk_idTipoDeProduto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -164,10 +163,10 @@ DROP TABLE IF EXISTS `tipodeproduto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipodeproduto` (
-  `idTipoDeProduto` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idTipoDeProduto` bigint(10) unsigned NOT NULL,
   `tipoDeProduto` varchar(80) NOT NULL,
   PRIMARY KEY (`idTipoDeProduto`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-17 19:23:56
+-- Dump completed on 2015-11-23 21:29:55
