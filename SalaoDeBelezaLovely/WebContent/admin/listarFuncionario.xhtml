@@ -11,8 +11,10 @@
 		<h:form>
 			<h1>Lista de Funcionarios</h1>
 			<h:messages />
-			<h:dataTable border="1" value="#{funcionarioMb.funcionarios}"
+			
+			<h:dataTable  styleClass="table table-striped" border="1" value="#{funcionarioMb.funcionarios}"
 				var="funcionario">
+				
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Nome" />
