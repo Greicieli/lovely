@@ -8,24 +8,22 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import br.sc.senai.lovely.dominio.Produto;
-import br.sc.senai.lovely.dominio.TipoDeProduto;
 import br.sc.senai.lovely.model.ProdutoRn;
-import br.sc.senai.lovely.model.TipoDeProdutoRn;
 
-@ManagedBean(name="produtoBean")
+@ManagedBean
 @SessionScoped
 
 public class ProdutoMb {
 	private Produto produto;
 	private ProdutoRn controleProduto;
-	private TipoDeProdutoRn controleTipoDeProduto;
+
 	private Produto produtoSelecionado;
 	private List<Produto> produtos ;
 	
 	public ProdutoMb() {
 		produto  = new Produto();
 		controleProduto  = new ProdutoRn();
-		controleTipoDeProduto = new TipoDeProdutoRn();
+		
 	}
 
 
@@ -46,16 +44,6 @@ public class ProdutoMb {
 
 	public void setControle(ProdutoRn controle) {
 		this.controleProduto = controle;
-	}
-
-
-	public TipoDeProdutoRn getControleTipoDeProduto() {
-		return controleTipoDeProduto;
-	}
-
-
-	public void setControleTipoDeProduto(TipoDeProdutoRn controleTipoDeProduto) {
-		this.controleTipoDeProduto = controleTipoDeProduto;
 	}
 
 
@@ -119,10 +107,7 @@ public class ProdutoMb {
 		return null;
 	}
 	
-	public List<TipoDeProduto> listarTipoDeProdutos() {
-		return controleTipoDeProduto.listarTodos();
-	}
-	
+		
 	public String voltar() {
 		return "listarProduto";
 	}

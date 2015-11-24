@@ -12,9 +12,9 @@ import br.sc.senai.lovely.dominio.Produto;
 public class ProdutoDao extends Dao {
 
 	private Connection connection;
-	private final String INSERT = "INSERT INTO produto(descricao, valor, quantidade, fk_idTipoDeProduto ) VALUES (?,?,?,?)";
+	private final String INSERT = "INSERT INTO produto(descricao, valor, quantidade) VALUES (?,?,?,?)";
 	private final String SELECT = "SELECT * FROM produto";
-	private final String UPDATE = "UPDATE produto SET descricao = ?, valor = ?,quantidade = ?, tipoDeProduto = ? WHERE idProduto = ?";
+	private final String UPDATE = "UPDATE produto SET descricao = ?, valor = ?,quantidade = ? WHERE idProduto = ?";
 	private final String DELETE = "DELETE FROM produto WHERE idProduto = ?";
 	private final String SELECT_ID = "SELECT * FROM produto WHERE idProduto = ?";
 
@@ -32,9 +32,8 @@ public class ProdutoDao extends Dao {
 
 			PreparedStatement ps = getConnection().prepareStatement(INSERT);
 			ps.setString(1, produto.getDescricao());
-			ps.setLong(2, produto.getTipoDeProduto().getIdTipoDeProduto());
-			ps.setInt(3, produto.getQuantidade());
-			ps.setDouble(4, produto.getValor());
+			ps.setInt(2, produto.getQuantidade());
+			ps.setDouble(3, produto.getValor());
 
 			ps.executeUpdate();
 
@@ -67,8 +66,7 @@ public class ProdutoDao extends Dao {
 		ps.setString(1, produto.getDescricao());
 		ps.setDouble(2, produto.getValor());
 		ps.setInt(3, produto.getQuantidade());
-		ps.setLong(4, produto.getTipoDeProduto().getIdTipoDeProduto());
-		ps.setLong(5, produto.getIdProduto());
+		ps.setLong(4, produto.getIdProduto());
 	}
 
 	public void excluir(Produto produto) {
@@ -102,8 +100,6 @@ public class ProdutoDao extends Dao {
 				produto.setQuantidade(rs.getInt("quantidade"));
 				produto.setValor(rs.getDouble("valor"));
 
-				// TipoDeProdutoDao tipoDeProdutoDao = TipoDeProdutoDao();
-				// produto.setTipoDeProduto(tipoDeProdutoDao.buscarPorId(rs.getInt("idTipoDeProduto")));
 
 				produtos.add(produto);
 			}

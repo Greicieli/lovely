@@ -3,66 +3,56 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="WEB-INF/template/padrao.xhtml">
-	
+<ui:composition template="/WEB-INF/template/padrao.xhtml">
 	<ui:define name="conteudo">
-	
-		<div id="listar">
-		<h:form>
-			<h1>Lista de Produtos</h1>
-			<h:messages />
-			<h:dataTable border="1" value="#{produtoBean.produtos}"
-				var="produto">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Descrição" />
-					</f:facet>
-					<h:outputText value="#{produto.descricao}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Valor" />
-					</f:facet>
-					<h:outputText value="#{produto.valor}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Quantidade" />
-					</f:facet>
-					<h:outputText value="#{produto.quantidade}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Tipo De Produto" />
-					</f:facet>
-					<h:outputText value="#{produto.fk_idTipoDeProduto}" />
-				</h:column>
+
+		<div id="cadastro">
+
+			<div id="listar">
+				<h:form>
+					<h1>Lista de Produtos</h1>
+					<h:messages />
+					<h:dataTable border="1" value="#{produtoMb.produtos}" var="produto">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Descrição" />
+							</f:facet>
+							<h:outputText value="#{produto.descricao}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Valor" />
+							</f:facet>
+							<h:outputText value="#{produto.valor}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Quantidade" />
+							</f:facet>
+							<h:outputText value="#{produto.quantidade}" />
+						</h:column>
 
 
-
-				<h:column>
-					<h:commandLink action="#{produtoBean.alterar}" value="Alterar"
-						title="Alterar">
-						<f:setPropertyActionListener
-							target="#{produtoBean.produtoSelecionado}"
-							value="#{produto}" />
-					</h:commandLink>
-				</h:column>
-				<h:column>
-					<h:commandLink action="#{produtoBean.excluir}" value="Excluir"
-						title="Excluir">
-						<f:setPropertyActionListener
-							target="#{produtoBean.produtoSelecionado}"
-							value="#{produto}" />
-					</h:commandLink>
-				</h:column>
-		</h:dataTable>
-		</h:form>
-		
+						<h:column>
+							<h:commandLink action="#{produtoMb.alterar}" value="Alterar"
+								title="Alterar">
+								<f:setPropertyActionListener
+									target="#{produtoMb.produtoSelecionado}" value="#{produto}" />
+							</h:commandLink>
+						</h:column>
+						<h:column>
+							<h:commandLink action="#{produtoMb.excluir}" value="Excluir"
+								title="Excluir">
+								<f:setPropertyActionListener
+									target="#{produtoMb.produtoSelecionado}" value="#{produto}" />
+							</h:commandLink>
+						</h:column>
+					</h:dataTable>
+				</h:form>
 			</div>
+		</div>
 	</ui:define>
 </ui:composition>
 
 </html>
-		
-	
+

@@ -6,7 +6,6 @@ public class Produto {
 	private String descricao;
 	private double valor;
 	private int quantidade;
-	private TipoDeProduto tipoDeProduto;
 	
 	
 	public long getIdProduto() {
@@ -41,13 +40,6 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 
-	public TipoDeProduto getTipoDeProduto() {
-		return tipoDeProduto;
-	}
-
-	public void setTipoDeProduto(TipoDeProduto tipoDeProduto) {
-		this.tipoDeProduto = tipoDeProduto;
-	}
-
+	
 	
 }
