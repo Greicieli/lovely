@@ -114,7 +114,7 @@ CREATE TABLE `funcionario` (
   `email` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`idFuncionario`),
   UNIQUE KEY `idFuncionario_UNIQUE` (`idFuncionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +123,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES (1,'Luana','Manicure','luana@lovely.com.br'),(2,'Jane','Cabelereira','jane@lovely.com.br'),(3,'Luiza','Gerente','luiza@lovely.com.br'),(4,'Fernades','Barbeiro','fernandes@lovely.com.br'),(6,'Greici','manicure','greici@gmail.com');
+INSERT INTO `funcionario` VALUES (1,'Luana','Manicure','luana@lovely.com.br'),(2,'Jane','Cabelereira','jane@lovely.com.br'),(3,'Luiza','Gerente','luiza@lovely.com.br'),(4,'Fernades','Barbeiro','fernandes@lovely.com.br'),(6,'Greici','manicure','greici@gmail.com'),(7,'Greicieli','gerente','greici@gmail.com'),(11,'Jessica','socia','jessica@berger.com'),(12,'Greicieli','Chefe','greici@gmail.com');
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,9 +139,7 @@ CREATE TABLE `produto` (
   `descricao` varchar(80) NOT NULL,
   `valor` float NOT NULL,
   `quantidade` int(10) NOT NULL,
-  `fk_idTipoDeProduto` bigint(10) unsigned NOT NULL,
-  PRIMARY KEY (`idProduto`),
-  KEY `fk_idTipoDeProduto` (`fk_idTipoDeProduto`)
+  PRIMARY KEY (`idProduto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -151,32 +149,8 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
-INSERT INTO `produto` VALUES (1,'Shampoo para cabelos seco',25,9,2),(2,'fress',29.5,5,2),(3,'fress',29.5,6,3);
+INSERT INTO `produto` VALUES (1,'Shampoo para cabelos seco',25,9),(2,'fress',29.5,5),(3,'fress',29.5,6);
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tipodeproduto`
---
-
-DROP TABLE IF EXISTS `tipodeproduto`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tipodeproduto` (
-  `idTipoDeProduto` bigint(10) unsigned NOT NULL,
-  `tipoDeProduto` varchar(80) NOT NULL,
-  PRIMARY KEY (`idTipoDeProduto`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipodeproduto`
---
-
-LOCK TABLES `tipodeproduto` WRITE;
-/*!40000 ALTER TABLE `tipodeproduto` DISABLE KEYS */;
-INSERT INTO `tipodeproduto` VALUES (2,'Shampoo'),(3,'condicionador');
-/*!40000 ALTER TABLE `tipodeproduto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -188,4 +162,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-23 21:29:55
+-- Dump completed on 2015-11-24 19:36:30
