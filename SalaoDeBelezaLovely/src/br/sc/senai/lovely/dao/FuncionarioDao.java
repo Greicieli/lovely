@@ -62,7 +62,7 @@ public class FuncionarioDao extends Dao {
 	public void excluir(Long idFuncionario) throws Exception {
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(DELETE);
-			ps.setLong(1, idFuncionario);
+			ps.setLong(4, idFuncionario);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,7 +118,7 @@ public class FuncionarioDao extends Dao {
 		ps.setString(1, funcionario.getNome());
 		ps.setString(2, funcionario.getFuncao());
 		ps.setString(3, funcionario.getEmail());
-		ps.setLong(2, funcionario.getIdFuncionario());
+		
 
 	}
 

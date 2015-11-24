@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 
+
 import br.sc.senai.lovely.dominio.Funcionario;
 import br.sc.senai.lovely.model.FuncionarioRn;
 
@@ -22,12 +23,19 @@ public class FuncionarioMb {
 	@PostConstruct
 	public void init(){
 		rn = new FuncionarioRn();
-		funcionario = new Funcionario();
+		if (funcionario == null) {
+			funcionario = new Funcionario();
+		}
+		
 	
 	}
 	
 	
-	public List<Funcionario> getFuncionarios() {
+	public List<Funcionario> getFuncionarios() throws Exception {
+		if(funcionarios == null){
+			funcionarios = rn.listar();
+ 		}
+	
 		return funcionarios;
 	}
 
@@ -80,8 +88,8 @@ public class FuncionarioMb {
 	
 	public String editar(String idParam) throws Exception{
 		Long id = Long.parseLong(idParam);
-	//	funcionario = rn.buscarPorId(id);
-		return "cadFicha";
+		funcionario = rn.buscarPorId(id);
+		return "cadastroFuncionario";
 	}
 	
 }

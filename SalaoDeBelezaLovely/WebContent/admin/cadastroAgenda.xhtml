@@ -7,32 +7,24 @@
 	<ui:define name="conteudo">
 
 		<div id="cadastro">
+		<script type="text/javascript" src="js/language/xx-XX.js"></script>
+		<script type="text/javascript">
+   		 var calendar = $('#calendar').calendar({language: 'xx-XX'});
+		</script>
 			
 	<form>
-					<script type="text/javascript">
-			  		PrimeFaces.locales['tr'] = {
-			        closeText: 'kapat',
-			        prevText: 'geri',
-			        nextText: 'ileri',
-			        currentText: 'bugÃ¼n',
-			        monthNames: ['Ocak','Åubat','Mart','Nisan','MayÄ±s','Haziran',
-			            'Temmuz','AÄustos','EylÃ¼l','Ekim','KasÄ±m','AralÄ±k'],
-			        monthNamesShort: ['Oca','Åub','Mar','Nis','May','Haz',
-			            'Tem','AÄu','Eyl','Eki','Kas','Ara'],
-			        dayNames: ['Pazar','Pazartesi','SalÄ±','ÃarÅamba','PerÅembe','Cuma','Cumartesi'],
-			        dayNamesShort: ['Pz','Pt','Sa','Ãa','Pe','Cu','Ct'],
-			        dayNamesMin: ['Pz','Pt','Sa','Ãa','Pe','Cu','Ct'],
-			        weekHeader: 'Hf',
-			        firstDay: 1,
-			        isRTL: false,
-			        showMonthAfterYear: false,
-			        yearSuffix: '',
-			        month: 'Ay',
-			        week: 'Hafta',
-			        day: 'GÃ¼n',
-			        allDayText : 'TÃ¼m GÃ¼n'
-			    };
-			</script>
+				 <div id="calendar"></div>
+
+    <script type="text/javascript" src="js/vendor/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/vendor/underscore-min.js"></script>
+    <script type="text/javascript" src="js/calendar.js"></script>
+    <script type="text/javascript">
+        var calendar = $("#calendar").calendar(
+            {
+                tmpl_path: "/tmpls/",
+                events_source: function () { return []; }
+            });            
+    </script>
 			</form>
 		<h:form>
 		

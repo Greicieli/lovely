@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-<ui:composition template="WEB-INF/template/padrao.xhtml">
+<ui:composition template="/WEB-INF/template/padrao.xhtml">
 	
 	<ui:define name="conteudo">
 	
@@ -11,7 +11,7 @@
 		<h:form>
 			<h1>Lista de Funcionarios</h1>
 			<h:messages />
-			<h:dataTable border="1" value="#{funcionarioBean.funcionarios}"
+			<h:dataTable border="1" value="#{funcionarioMb.funcionarios}"
 				var="funcionario">
 				<h:column>
 					<f:facet name="header">
@@ -34,21 +34,14 @@
 				</h:column>
 
 				<h:column>
-					<h:commandLink action="#{funcionarioBean.alterar}" value="Alterar"
-						title="Alterar">
-						<f:setPropertyActionListener
-							target="#{funcionarioBean.funcionarioSelecionado}"
-							value="#{funcionario}" />
-					</h:commandLink>
+					<f:facet name="header"></f:facet>
+					<h:commandLink value="Editar" action="#{funcionarioMb.editar(funcionario.idFuncionario)}" />
+					
+					<h:commandLink value="X" style="margin-left: 7%;" action="#{funcionarioMb.excluir(funcionario.idFuncionario)}"
+					 onclick="return confirm('Tem certeza que deseja excluir usuário &#34;#{funcionario.nome}&#34;?')" />
+					 
 				</h:column>
-				<h:column>
-					<h:commandLink action="#{funcionarioBean.excluir}" value="Excluir"
-						title="Excluir">
-						<f:setPropertyActionListener
-							target="#{funcionarioBean.funcionarioSelecionado}"
-							value="#{funcionario}" />
-					</h:commandLink>
-				</h:column>
+					
 			</h:dataTable>
 		</h:form>
 		
