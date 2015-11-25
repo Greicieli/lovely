@@ -4,49 +4,65 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/template/padrao.xhtml">
-	
-	<ui:define name="conteudo">
-	
-		<div id="listar">
-		<h:form>
-			<h1>Lista de Funcionarios</h1>
-			<h:messages />
-			
-			<h:dataTable  styleClass="table table-striped" border="1" value="#{funcionarioMb.funcionarios}"
-				var="funcionario">
-				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Nome" />
-					</f:facet>
-					<h:outputText value="#{funcionario.nome}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Função" />
-					</f:facet>
-					<h:outputText value="#{funcionario.funcao}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="E-mail" />
-					</f:facet>
-					<h:outputText value="#{funcionario.email}">
-					</h:outputText>
-				</h:column>
 
-				<h:column>
-					<f:facet name="header"></f:facet>
-					<h:commandLink value="Editar" action="#{funcionarioMb.editar(funcionario.idFuncionario)}" />
-					
-					<h:commandLink value="X" style="margin-left: 7%;" action="#{funcionarioMb.excluir(funcionario.idFuncionario)}"
-					 onclick="return confirm('Tem certeza que deseja excluir usuário &#34;#{funcionario.nome}&#34;?')" />
-					 
-				</h:column>
-					
-			</h:dataTable>
-		</h:form>
-		
+	<ui:define name="conteudo">
+
+		<div id="listar">
+			<p>Lista de Funcionarios</p>
+			<h:form>
+
+
+				<div class="table-overflow">
+					<h:dataTable styleClass="table table-striped" border="1"
+						value="#{funcionarioMb.funcionarios}" var="funcionario">
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:outputText value="#{funcionario.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Função" />
+							</f:facet>
+							<h:outputText value="#{funcionario.funcao}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="E-mail" />
+							</f:facet>
+							<h:outputText value="#{funcionario.email}">
+							</h:outputText>
+						</h:column>
+
+						<h:column >
+							<f:facet name="header"></f:facet>
+							<h:commandLink title="Editar" style="text-align: center"
+								action="#{funcionarioMb.editar(funcionario.idFuncionario)}">
+								<div class="center">
+								<h:graphicImage value="#{resource['img/editar.png']}" alt=""
+									width="27" height="27"  />
+									</div>
+							</h:commandLink>
+							
+						</h:column>
+						<h:column>
+							<h:commandLink title="Exluir"
+								action="#{funcionarioMb.excluir(funcionario.idFuncionario)}"
+								onclick="return confirm('Tem certeza que deseja excluir usuário &#34;#{funcionario.nome}&#34;?')">
+								<div class="center">
+								<h:graphicImage value="#{resource['img/delete.png']}" alt=""
+									width="27" height="27"  />
+								</div>
+							</h:commandLink>
+
+						</h:column>
+
+					</h:dataTable>
+				</div>
+			</h:form>
+
 		</div>
 	</ui:define>
 </ui:composition>
