@@ -26,16 +26,6 @@
 						value="#{produtoMb.produto.quantidade}" required="true"
 						requiredMessage="A quantidade é obrigatória!" />
 
-				<h:outputLabel value="Tipo de Produto: " for="tipoDeProduto_id" />
-					<h:selectOneMenu id="tipoDeProduto_id"
-						value="#{produtoMb.produto.tipoDeProduto.idTipoDeProduto}">
-						<f:selectItems value="#{produtoMb.listarTipoDeProdutos()}"
-							var="tipoDeProduto" itemLabel="#{tipoDeProduto.tipoDeProduto}"
-							itemValue="#{tipoDeProduto.idTipoDeProduto}" />
-					</h:selectOneMenu>
-					
-
-
 					<h:commandButton value="Listar Produtos"
 						action="#{produtoMb.voltar}" immediate="true" />
 					<h:commandButton value="Enviar" action="#{produtoMb.salvar}" />
