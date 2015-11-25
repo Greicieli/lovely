@@ -2,115 +2,79 @@ package br.sc.senai.lovely.mb;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import br.sc.senai.lovely.dominio.Produto;
 import br.sc.senai.lovely.model.ProdutoRn;
 
 @ManagedBean
-@SessionScoped
 
 public class ProdutoMb {
 	private Produto produto;
-	private ProdutoRn controleProduto;
-
-	private Produto produtoSelecionado;
+	private ProdutoRn rn;
 	private List<Produto> produtos ;
 	
-	public ProdutoMb() {
-		produto  = new Produto();
-		controleProduto  = new ProdutoRn();
+	@PostConstruct
+	public void init(){
+		rn = new ProdutoRn();
+		if (produto == null) {
+			produto = new Produto();
+		}
 		
 	}
-
 
 	public Produto getProduto() {
 		return produto;
 	}
 
-
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 
-
-	public ProdutoRn getControle() {
-		return controleProduto;
+	public ProdutoRn getRn() {
+		return rn;
 	}
 
-
-	public void setControle(ProdutoRn controle) {
-		this.controleProduto = controle;
+	public void setRn(ProdutoRn rn) {
+		this.rn = rn;
 	}
 
-
-	public Produto getProdutoSelecionado() {
-		return produtoSelecionado;
-	}
-
-
-	public void setProdutoSelecionado(Produto produtoSelecionado) {
-		this.produtoSelecionado = produtoSelecionado;
-	}
-
-
-	public List<Produto> getProdutos() {
-		if (produtos== null) {
-			produtos = controleProduto.listarTodos();
-		}
+	public List<Produto> getProdutos() throws Exception{
+		if(produtos == null){
+			produtos = rn.listar();
+ 		}
 		return produtos;
 	}
-
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-
-
-	public String salvar() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		FacesMessage message = null;
+		
+	public String salvar(){
 		try {
-			controleProduto.salvar(produto);
-			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto cadastrado com sucesso!", "");
-			context.addMessage(null, message);
-			produto = new Produto();
-			produtos = null;
+			rn.salvar(produto);
 		} catch (Exception e) {
-			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), "");
-			context.addMessage(null, message);
+			e.printStackTrace();
+			return "";
 		}
-		
-		return null;
-		
-	}
-	
-	public String novo() {
-		produto= new Produto();
-		return "cadastroProduto";
-	}
-	
-	public String alterar() {
-		produto= produtoSelecionado;
-		produtoSelecionado = null;
-		return "cadastroProduto";
-	}
-	
-	public String excluir() {
-		controleProduto.excluir(produtoSelecionado);
-		produtos.remove(produtoSelecionado);
-		produtoSelecionado = null;
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto removido com sucesso!", ""));
-		return null;
-	}
-	
-		
-	public String voltar() {
 		return "listarProduto";
 	}
 	
+	public String excluir(String idParam){
+		Long idFuncionario = Long.parseLong(idParam);
+		try {
+			rn.excluir(idFuncionario);
+			produtos = null;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 	
+	public String editar(String idParam) throws Exception{
+		Long id = Long.parseLong(idParam);
+		produto = rn.buscarPorId(id);
+		return "cadastroProduto";
+	}
 }

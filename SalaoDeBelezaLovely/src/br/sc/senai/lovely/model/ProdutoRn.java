@@ -9,18 +9,29 @@ public class ProdutoRn {
 
 	ProdutoDao dao;
 	
-	public void salvar(Produto produto) throws Exception{
-		if(produto.getDescricao().trim().isEmpty()){
-			throw new Exception("A decrição é obrigatório!");
-		}
-
-}
-	
-	public void excluir(Produto produto){
-		dao.excluir(produto);
+	public ProdutoRn(){
+		dao = new ProdutoDao();
 	}
-	public List<Produto> listarTodos() {
+	
+	 public void salvar(Produto produto) throws Exception{
+		if(produto.getDescricao().trim().isEmpty()){
+			throw new Exception("A descrição é um campo obrigatório!");
+		}
+		
+		dao.salvar(produto);
+	}
+	
+	public void excluir(Long idProduto)throws Exception{
+		dao.excluir(idProduto);
+	}
+	
+	public List<Produto> listar() throws Exception {
 		return dao.listarTodos();
 	}
-
+	
+	public Produto buscarPorId(Long idProduto) throws Exception{
+		return dao.buscarPorId(idProduto);
+	}
+	
+	
 }
