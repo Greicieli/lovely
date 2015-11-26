@@ -35,7 +35,7 @@ public class AgendaDao extends Dao  {
 		ps.setObject(2, agenda.getHora());
 		ps.setString(3, agenda.getProcedimento());
 		ps.setLong(4, agenda.getFuncionario().getIdFuncionario());
-		ps.setInt(5, agenda.getCliente().getIdCliente());
+		ps.setLong(5, agenda.getCliente().getIdCliente());
 	}
 
 	
