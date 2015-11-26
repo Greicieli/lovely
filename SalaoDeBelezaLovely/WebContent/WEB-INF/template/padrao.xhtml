@@ -28,7 +28,7 @@
 <h:body>
 	<div id="logo">
 		<form>
-			<h:graphicImage value="#{resource['img/logo.png']}" alt="" width="400px" height="200px"
+			<h:graphicImage value="#{resource['img/logo.png']}" alt="" width="30%" height="30%"
 				align="top" />
 		</form>
 	</div>
@@ -39,17 +39,17 @@
 				<ul>
 					<li><h:commandLink value="Home" action="/index.xhtml" /></li>
 					<li><h:commandLink value="Produtos"
-							action="/admin/cadastroProduto.xhtml" /></li>
-					<li><h:commandLink value="Agenda" action="/admin/cadastroAgenda.xhtml" /></li>
+							action="/admin/listarProduto.xhtml" /></li>
+					<li><h:commandLink value="Agenda" action="/admin/listarAgenda.xhtml" /></li>
 					<li><h:commandLink value="Clientes"
-							action="/admin/cadastroCliente.xhtml" /></li>
+							action="/admin/listarCliente.xhtml" /></li>
 					<li><h:commandLink value="Funcionarios"
 							action="/admin/listarFuncionario.xhtml" /></li>
 
 				</ul>
 			</div>
 			<br></br>
-			<hr />
+			
 
 		</h:form>
 	</div>

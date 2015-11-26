@@ -64,6 +64,8 @@ public class FuncionarioMb {
 	public void setRn(FuncionarioRn rn) {
 		this.rn = rn;
 	}
+	
+	
 
 	public String salvar(){
 		try {

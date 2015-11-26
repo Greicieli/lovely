@@ -5,13 +5,13 @@
 
 <ui:composition template="/WEB-INF/template/padrao.xhtml">
 	<ui:define name="conteudo">
-
-		<div id="cadastro">
-
-			<div id="listar">
-				<h:form>
+	<div id="listar">
+				
+				
 					<h1>Lista de Produtos</h1>
-					<h:messages />
+					<h:form>
+					<div class="table-overflow">
+					
 					<h:dataTable border="1" value="#{produtoMb.produtos}" var="produto">
 						<h:column>
 							<f:facet name="header">
@@ -34,23 +34,32 @@
 
 
 						<h:column>
-							<h:commandLink action="#{produtoMb.alterar}" value="Alterar"
-								title="Alterar">
-								<f:setPropertyActionListener
-									target="#{produtoMb.produtoSelecionado}" value="#{produto}" />
+							<f:facet name="header"></f:facet>
+							<h:commandLink title="Editar" style="text-align: center"
+								action="#{funcionarioMb.editar(funcionario.idFuncionario)}">
+								<div class="center">
+									<h:graphicImage value="#{resource['img/editar.png']}" alt=""
+										width="27" height="27" />
+								</div>
 							</h:commandLink>
+
 						</h:column>
 						<h:column>
-							<h:commandLink action="#{produtoMb.excluir}" value="Excluir"
-								title="Excluir">
-								<f:setPropertyActionListener
-									target="#{produtoMb.produtoSelecionado}" value="#{produto}" />
+							<h:commandLink title="Exluir"  style="text-align: center"
+								action="#{funcionarioMb.excluir(funcionario.idFuncionario)}"
+								onclick="return confirm('Tem certeza que deseja excluir usuário &#34;#{funcionario.nome}&#34;?')">
+								<div class="center">
+									<h:graphicImage value="#{resource['img/delete.png']}" alt=""
+										width="27" height="27" />
+								</div>
 							</h:commandLink>
+
 						</h:column>
 					</h:dataTable>
+					</div>
 				</h:form>
 			</div>
-		</div>
+		
 	</ui:define>
 </ui:composition>
 
