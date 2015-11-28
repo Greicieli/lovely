@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/template/padrao.xhtml">
+	<ui:define name="conteudo">
+
+		<div id="cadastro">
+		<script type="text/javascript" src="js/language/xx-XX.js"></script>
+		<script type="text/javascript">
+   		 var calendar = $('#calendar').calendar({language: 'xx-XX'});
+		</script>
+			
+	<form>
+				 <div id="calendar"></div>
+
+    <script type="text/javascript" src="js/vendor/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/vendor/underscore-min.js"></script>
+    <script type="text/javascript" src="js/calendar.js"></script>
+    <script type="text/javascript">
+        var calendar = $("#calendar").calendar(
+            {
+                tmpl_path: "/tmpls/",
+                events_source: function () { return []; }
+            });            
+    </script>
+			</form>
+		<h:form>
+		
+				
+		
+			<h1>Agendamento</h1>
+			<h:panelGrid  columns="2" >
+
+			<h:outputLabel value="Cliente : " for="cliente_id"/>
+			<h:selectOneMenu id="cliente_id" value="#{agendaMb.agenda.cliente.idCliente}">
+				<f:selectItems value="#{agendaMb.listarClientes()}" var="cliente"
+								itemLabel="#{cliente.nome}" itemValue="#{cliente.idCliente}"/>
+			</h:selectOneMenu>
+			
+			
+			<h:outputLabel value="Funcionario : " for="funcionario_id"/>
+			<h:selectOneMenu id="funcionario_id" value="#{agendaMb.agenda.funcionario.idFuncionario}">
+				<f:selectItems value="#{agendaMb.listarFuncionarios()}" var="funcionario"
+								itemLabel="#{funcionario.nome}" itemValue="#{funcionario.idFuncionario}"/>
+			</h:selectOneMenu>
+			
+						<h:outputLabel value="Data do Agendamento:" for="data_id"/>
+						<h:inputText id="data_id" value="#{agendaMb.agenda.data}" required="true" requiredMessage="A data do Agendaento Ã© obrigatÃ³ria!" converterMessage="Formato de data invÃ¡lido. Ex: 11/11/1111">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:inputText>
+						
+						
+						<h:outputLabel value="Horario do Agendamento:" for="hora_id"/>
+						<h:inputText id="hora_id" value="#{agendaMb.agenda.hora}" required="true" requiredMessage="O Horario do Agendamento Ã© obrigatÃ³rio!" converterMessage="Formato de hora invÃ¡lido. Ex: 00:00:00">
+							<f:convertDateTime pattern="HH:mm"/>
+						</h:inputText>
+
+				<h:outputLabel value="Procedimento:" for="procedimento_id"/>
+						<h:inputText id="procedimento_id" value="#{agendaMb.agenda.procedimento}" required="true" requiredMessage="O Procedimento Ã© obrigatÃ³rio!"/>
+					
+
+
+				
+
+				<h:commandButton value="Listar Agenda"
+					action="#{agendaMb.voltar}" immediate="true" />
+				<h:commandButton value="Salvar" action="#{agendaMb.salvar}" />
+
+			</h:panelGrid>
+		</h:form>
+			</div>
+	
+		<div id="rodape">
+		<br></br>Lovely SalÃ£o de Beleza
+		<br>Rua Bocaiuva, 1900<a id= "mapa" href="https://www.google.com.br/maps/place/Beiramar+Shopping+Center/@-27.5913708,-48.5398807,14z/data=!4m2!3m1!1s0x0:0x213691a7fa55d9a4?hl=pt-br" target="_blank"> Ver mapa</a>
+		<br>Contato: (48) 3039-9078</br></br>
+		</div>
+
+</ui:define>
+</ui:composition>
+
+</html>
