@@ -34,37 +34,56 @@
 	</div>
 	<div id="fundo">
 		<h:form>
-			<div id="menu">
+		<div class="menu">
+			<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					
+				</div>
 
-				<ul>
-					<li><h:commandLink value="Home" action="/index.xhtml" /></li>
-					<li><h:commandLink value="Produtos"
-							action="/listarProduto.xhtml" /></li>
-					<li><h:commandLink value="Agenda" action="/listarAgenda.xhtml" /></li>
-					<li><h:commandLink value="Serviços"
-							action="/listarServico.xhtml" /></li>
-
-
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><h:link outcome="/index">Home</h:link></li>
+						<li class="active"><h:link outcome="/listarAgenda">Agenda</h:link></li>
+						<li class="active"><h:link outcome="/listarProduto">Produtos</h:link></li>
+						<li class="active"><h:link outcome="/listarProduto">Serviços</h:link></li>
+					</ul>
 					<h:panelGroup rendered="#{sessaoMB.estaLogado()}">
+						<h:form>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-haspopup="true"
+									aria-expanded="false">ADMIN<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><h:link outcome="/admin/listarAgenda">Agendamentos</h:link></li>
+										<li><h:link outcome="/admin/listarFuncionario">Funcionarios</h:link></li>
+										<li><h:link outcome="/admin/listarProduto">Produtos</h:link></li>
+										<li><h:link outcome="/admin/listarCliente">Clientes</h:link></li>
+										
+										<li><h:commandLink action="#{sessaoMB.sair()}">Sair</h:commandLink></li>
+									</ul></li>
+							</ul>
 
-						<li role="presentation" class="dropdown"><a
-							class="dropdown-toggle" data-toggle="dropdown" href="#"
-							role="button" aria-haspopup="true" aria-expanded="false">
-								Admin <span class="caret"></span>
-						</a>
-							<ul class="dropdown-menu">
-
-								<li><h:link outcome="/admin/listarFuncionario">Funcionarios</h:link></li>
-								<li><h:link outcome="/admin/listarClientes">Clientes</h:link></li>
-								<li><h:link outcome="/admin/listarProduto">Produtos</h:link></li>
-								<li role="separator" class="divider"></li>
-								<li><h:commandLink action="#{sessaoMB.sair()}">Sair</h:commandLink></li>
-							</ul></li>
+						</h:form>
 					</h:panelGroup>
-				</ul>
 
-
+				</div>
+				<!-- /.navbar-collapse -->
 			</div>
+			<!-- /.container-fluid --> </nav>
+
+		</div>
+			
 			<br></br>
 		</h:form>
 	</div>
