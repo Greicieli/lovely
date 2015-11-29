@@ -16,33 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `admin`
---
-
-DROP TABLE IF EXISTS `admin`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `admin` (
-  `idAdmin` bigint(10) NOT NULL AUTO_INCREMENT,
-  `login` varchar(80) DEFAULT NULL,
-  `senha` varchar(80) DEFAULT NULL,
-  `fk_idFuncionario` bigint(10) unsigned NOT NULL,
-  PRIMARY KEY (`idAdmin`),
-  UNIQUE KEY `idAdmin_UNIQUE` (`idAdmin`),
-  KEY `fk_idFuncionario` (`fk_idFuncionario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `admin`
---
-
-LOCK TABLES `admin` WRITE;
-/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `agenda`
 --
 
@@ -87,7 +60,7 @@ CREATE TABLE `cliente` (
   `endereco` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`idCliente`),
   UNIQUE KEY `idCliente_UNIQUE` (`idCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +69,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Maria','48-3039.7643','maria@gmail.com','Florianópolis'),(2,'Joana','48-3039.7600','joana@gmail.com','Florianópolis'),(3,'Jessica','3232665','j@lovely.com','Fpolis');
+INSERT INTO `cliente` VALUES (1,'Maria','48-3039.7643','maria@gmail.com','Florianópolis'),(2,'Joana','48-3039.7600','joana@gmail.com','Florianópolis'),(3,'Jessica','3232665','j@lovely.com','Fpolis'),(7,'Joana','85858585','joana@gmail.com','rua bocaiuva');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +87,7 @@ CREATE TABLE `funcionario` (
   `email` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`idFuncionario`),
   UNIQUE KEY `idFuncionario_UNIQUE` (`idFuncionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,8 +96,34 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES (1,'Luana','Manicure','luana@lovely.com.br'),(2,'Jane','Cabelereira','jane@lovely.com.br'),(3,'Luiza','Gerente','luiza@lovely.com.br'),(4,'Fernades','Barbeiro','fernandes@lovely.com.br'),(6,'Greici','manicure','greici@gmail.com'),(7,'Greicieli','gerente','greici@gmail.com'),(11,'Jessica','socia','jessica@berger.com'),(12,'Greicieli','Chefe','greici@gmail.com');
+INSERT INTO `funcionario` VALUES (2,'Jane','Cabelereira','jane@lovely.com.br'),(3,'Luiza','Gerente','luiza@lovely.com.br'),(4,'Fernades','Barbeiro','fernandes@lovely.com.br'),(6,'Greici','manicure','greici@gmail.com'),(7,'Greicieli','gerente','greici@gmail.com'),(11,'Jessica','socia','jessica@berger.com'),(12,'Greicieli','Chefe','greici@gmail.com'),(13,'Greicieli','manicure','g@gmail.com'),(14,'Luana','cabeleireira','luana@lovely.com.br'),(15,'Janaina','Cabelereira','jane@lovely.com.br'),(16,'Kelly','Manicure','kelly@lovely');
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `login`
+--
+
+DROP TABLE IF EXISTS `login`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `login` (
+  `idlogin` bigint(10) NOT NULL,
+  `usuario` varchar(45) DEFAULT NULL,
+  `senha` varchar(45) DEFAULT NULL,
+  `admin` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`idlogin`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `login`
+--
+
+LOCK TABLES `login` WRITE;
+/*!40000 ALTER TABLE `login` DISABLE KEYS */;
+INSERT INTO `login` VALUES (1,'greici','senha',1),(2,'jessica','senha',0);
+/*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -140,7 +139,7 @@ CREATE TABLE `produto` (
   `valor` float NOT NULL,
   `quantidade` int(10) NOT NULL,
   PRIMARY KEY (`idProduto`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +148,7 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
-INSERT INTO `produto` VALUES (1,'Shampoo para cabelos seco',25,9),(2,'fress',29.5,5),(3,'fress',29.5,6);
+INSERT INTO `produto` VALUES (1,'Shampoo para cabelos seco',25,9),(2,'fress',29.5,5),(3,'fress',29.5,6),(4,'escova',1,5);
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -162,4 +161,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-24 19:36:30
+-- Dump completed on 2015-11-29 20:14:15
