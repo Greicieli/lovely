@@ -12,9 +12,9 @@ import br.sc.senai.lovely.dominio.Cliente;
 
 public class ClienteDao extends Dao {
 	
-	private final String INSERT = "INSERT INTO cliente(nome, telefone, email, endereco) VALUES(?,?,?,?)";
+	private final String INSERT = "INSERT INTO cliente(nome, telefone, email, endereco, senha) VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM cliente";
-	private final String UPDATE = "UPDATE cliente SET  nome = ?, telefone = ?, email = ?, endereco = ? WHERE idCliente = ?";
+	private final String UPDATE = "UPDATE cliente SET  nome = ?, telefone = ?, email = ?, endereco = ?, senha = ? WHERE idCliente = ?";
 	private final String DELETE = "DELETE FROM cliente WHERE idcliente = ?";
 	private final String SELECT_ID = "SELECT * FROM cliente WHERE idcliente = ?";
 	
@@ -116,6 +116,7 @@ public class ClienteDao extends Dao {
 		cliente.setTelefone(rs.getInt("telefone"));
 		cliente.setEmail(rs.getString("email"));
 		cliente.setEndereco(rs.getString("endereco"));
+		cliente.setSenha(rs.getString("senha"));;
 		return cliente;
 	}
 	private void parseCliente(Cliente cliente, PreparedStatement ps)
@@ -124,6 +125,7 @@ public class ClienteDao extends Dao {
 		ps.setInt(2, cliente.getTelefone());
 		ps.setString(3, cliente.getEmail());
 		ps.setString(4, cliente.getEndereco());
+		ps.setString(5, cliente.getSenha());
 	}
 	
 	
