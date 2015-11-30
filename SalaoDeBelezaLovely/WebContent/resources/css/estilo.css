@@ -6,8 +6,7 @@ body,xhtml {
 }
 
 #logo {
-	margin-left: 5%;
-	padding-right: 10px;
+	margin-left: 50%;
 	margin: auto;
 }
 
@@ -106,7 +105,7 @@ border-radius: 4px;
 	margin: -130px 0 0 -130px;
 	padding: 30px;
 	position: absolute;
-	top: 53%;
+	top: 55%;
 	color: black;
 	text-align: center;
 	width: 78.5%;
@@ -155,6 +154,7 @@ border-radius: 4px;
 	width: 5px;
 }
 .form_login {
+	margin-left:70%;
 	 -webkit-border-radius: 4px;
 -moz-border-radius: 4px;
 border-radius: 4px;
