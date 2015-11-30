@@ -1,6 +1,6 @@
 body,xhtml {
 	width: 100%;
-	height: 70%;
+	height: 60%;
 	font-family: Tahoma;
 	background-image: url("#{resource['img/fundo1.png']}");
 }
