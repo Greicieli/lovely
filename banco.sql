@@ -58,6 +58,7 @@ CREATE TABLE `cliente` (
   `telefone` varchar(80) DEFAULT NULL,
   `email` varchar(80) DEFAULT NULL,
   `endereco` varchar(80) DEFAULT NULL,
+  `senha` varchar(45) NOT NULL,
   PRIMARY KEY (`idCliente`),
   UNIQUE KEY `idCliente_UNIQUE` (`idCliente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
@@ -69,7 +70,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Maria','48-3039.7643','maria@gmail.com','Florianópolis'),(2,'Joana','48-3039.7600','joana@gmail.com','Florianópolis'),(3,'Jessica','3232665','j@lovely.com','Fpolis'),(7,'Joana','85858585','joana@gmail.com','rua bocaiuva');
+INSERT INTO `cliente` VALUES (1,'Maria','48-3039.7643','maria@gmail.com','Florianópolis','senha'),(2,'Joana','48-3039.7600','joana@gmail.com','Florianópolis','senha'),(3,'Jessica','3232665','j@lovely.com','Fpolis','senha'),(7,'Joana','85858585','joana@gmail.com','rua bocaiuva','senha');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +123,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (1,'greici','senha',1),(2,'jessica','senha',0);
+INSERT INTO `login` VALUES (1,'admin','admin',1),(2,'jessica','senha',0);
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,4 +162,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-29 20:14:15
+-- Dump completed on 2015-11-30 19:44:05
