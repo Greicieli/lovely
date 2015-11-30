@@ -26,12 +26,17 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </h:head>
 <h:body>
+<h:panelGrid columns="7" >
+
 	<div id="logo">
 		<form>
 			<h:graphicImage value="#{resource['img/logo.png']}" alt=""
-				width="30%" height="30%" align="top" />
+				width="70%" height="70%" align="top" />
 		</form>
 	</div>
+	<ui:include src="/WEB-INF/modulos/login.xhtml" />
+	</h:panelGrid>
+	
 	<div id="fundo">
 		<h:form>
 		<div class="menu">
