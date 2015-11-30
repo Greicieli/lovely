@@ -12,16 +12,24 @@
 		<div class="form_login">
 			<h:form>
 
-				<div>
-					<label>Login:</label>
-					<h:inputText value="#{sessaoMB.usuarioForm.usuario}" />
+				<div style="color: white;">
+					<label style="margin-left: 50%">Login:</label>
+					<h:inputText value="#{sessaoMB.usuarioForm.usuario}" style="-webkit-border-radius: 4px;
+						-moz-border-radius: 4px;
+						border-radius: 4px; margin-left:1%;" />
 				</div>
-				<div>
+				<div style="color: white;">
 					<label>Senha:</label>
-					<h:inputSecret value="#{sessaoMB.usuarioForm.senha}" />
+					<h:inputSecret value="#{sessaoMB.usuarioForm.senha}" style="-webkit-border-radius: 4px;
+						-moz-border-radius: 4px;
+						border-radius: 4px;margin-left:0%;" />
 				</div>
-				<h:commandButton action="#{sessaoMB.entrar()}" value="Entrar" />
-				<h:commandButton action="/cadastroCliente.xhtml" value="Novo Cadastro" />
+				<h:commandButton action="#{sessaoMB.entrar()}" value="Entrar"  style="-webkit-border-radius: 4px;
+						-moz-border-radius: 4px;
+						border-radius: 4px;margin-left:5%;" />
+				<h:commandButton action="/cadastroCliente.xhtml" value="Novo Cadastro"  style="-webkit-border-radius: 4px;
+						-moz-border-radius: 4px;
+						border-radius: 4px;margin-left:5%;" />
 			</h:form>
 		</div>
 		
