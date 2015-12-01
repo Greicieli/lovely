@@ -1,35 +1,47 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-<h:head>
-	<title><ui:insert name="titulo">Salão de Beleza Lovely</ui:insert>
-	</title>
-	<h:outputStylesheet library="css" name="estilo.css" />
-	<!-- Latest compiled and minified CSS -->
+<ui:composition template="/WEB-INF/template/padrao.xhtml">
+	<ui:define name="conteudo">
+	<div  class="modal fade bs-example-modal-sm" tabindex="-1"
+				role="dialog" aria-labelledby="mySmallModalLabel">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						
+						<div id="cadastro" style="margin-top: 20%;">
+							<h:form>
+								<h1>Cadastro de Funcionarios</h1>
+
+								<h:panelGrid columns="2">
+									<h:outputLabel value="Nome:" for="nome_id" />
+									<h:inputText id="nome_id"
+										value="#{funcionarioMb.funcionario.nome}" required="true"
+										requiredMessage="O nome é obrigatório!" />
+
+									<h:outputLabel value="Função:  " for="funcao_id" />
+									<h:inputText id="funcao_id"
+										value="#{funcionarioMb.funcionario.funcao}" required="true"
+										requiredMessage="O Telefone é obrigatório!" maxlength="15" />
+
+									<h:outputLabel value="E-mail:" for="email_id" />
+									<h:inputText id="email_id"
+										value="#{funcionarioMb.funcionario.email}" required="true"
+										requiredMessage="O E-mail é obrigatório!" />
 
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+									<h:commandButton value="Salvar"
+										action="#{funcionarioMb.salvar()}" />
 
-	<!-- Optional theme -->
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-</h:head>
-<h:body>
-	<!-- Small modal -->
-
-	
-			
-	</h:body>
+								</h:panelGrid>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+    </ui:define>
+</ui:composition>
 
 </html>

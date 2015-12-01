@@ -87,20 +87,20 @@ border-radius: 4px;
 
 #cadastro {
 	background-color: #e1e1e1;
-	left: 50%;
+	left: 35%;
 	margin: -130px 0 0 -210px;
 	padding: 30px;
 	position: absolute;
 	top: 60%;
 	color: #CE9C15;
 	text-align: center;
-	border-radius: 20px;
+	border-radius: 10px;
+	width: 200%;
 	
 }
 
 #listar {
 	background-color: #e1e1e1;
-	
 	left: 20.999%;
 	margin: -130px 0 0 -130px;
 	padding: 30px;
