@@ -87,10 +87,8 @@ border-radius: 4px;
 
 #cadastro {
 	background-color: #e1e1e1;
-	left: 40%;
-	margin: -130px 0 0 -210px;
 	padding: 30px;
-	position: absolute;
+	margin-left:25%;
 	top: 55%;
 	color: #CE9C15;
 	border-radius: 10px;
@@ -104,7 +102,7 @@ border-radius: 4px;
 	padding: 30px;
 	top: 50%;
 	color: black;
-	text-align: center;
+	
 	width: 78.5%;
 	height: 50%;
 	border-color: black;
@@ -115,7 +113,7 @@ border-radius: 4px;
 }
 
 #rodape {
-	
+	margin-top:3%;
 	width: 100%;
 	font: 100% Tahoma;
 	color: black;

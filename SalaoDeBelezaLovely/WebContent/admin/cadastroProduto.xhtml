@@ -5,35 +5,60 @@
 
 <ui:composition template="/WEB-INF/template/padrao.xhtml">
 	<ui:define name="conteudo">
-	
 	<div id="cadastro">
 			<h:form>
-				<h:messages />
-				<h1>Cadastro de Produtos</h1>
-
+				<h2 style="text-align: center;">Cadastro de Produtos</h2>
+				
+				<h:inputHidden value="#{produtoMb.produto.idProduto}" />
+				
+					<hr style="color: black;"/>
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Descrição:" for="decricao_id" />
-					<h:inputText id="descricao_id"
-						value="#{produtoMb.produto.descricao}" required="true"
-						requiredMessage="A descrição é obrigatório!" />
-
-					<h:outputLabel value="Valor: " for="valor_id" />
-					<h:inputText id="valor_id" value="#{produtoMb.produto.valor}"
-						required="true" requiredMessage="O valor é obrigatório!" />
-
-					<h:outputLabel value="Quantidade:" for="quantidade_id" />
+					<h:outputLabel value="Descrição:" for="descricao_id" style="margin-left: 12%" />
+					<h:inputText id="descricao_id" value="#{produtoMb.produto.descricao}"
+						required="true" requiredMessage="O nome é obrigatório!" size="40" style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+				</h:panelGrid>
+				<br></br>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Valor:  " for="valor_id"  style="margin-left: 54%"  />
+					<h:inputText id="valor_id"
+						value="#{produtoMb.produto.valor}" required="true"
+						requiredMessage="O Telefone é obrigatório!" maxlength="15" size="40" style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+				</h:panelGrid>
+				<br></br>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Quantidade:" for="quantidade_id"  />
 					<h:inputText id="quantidade_id"
-						value="#{produtoMb.produto.quantidade}" required="true"
-						requiredMessage="A quantidade é obrigatória!" />
+						value="#{produtoMb.produto.quantidade}"  size="40" style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+</h:panelGrid>
+				<br></br>
+				<h:panelGrid columns="2">
+				
+			
+				<h:commandLink  title="Salvar" 
+								action="#{produtoMb.salvar()}">
+								
+									<h:graphicImage value="#{resource['img/confirmar.png']}" alt=""
+										width="33" height="33" style="margin-left: 94%" />
+								
+							</h:commandLink>
 
-					<h:commandButton value="Listar Produtos"
-						action="#{produtoMb.voltar}" immediate="true" />
-					<h:commandButton value="Enviar" action="#{produtoMb.salvar}" />
 
+					<h:link outcome="/admin/listarProduto">
+						<h:graphicImage value="#{resource['img/voltar.png']}" alt=""
+							width="33" height="33" />
+					</h:link>
 
 				</h:panelGrid>
+
 			</h:form>
-			</div>
+		</div>
+	
 	</ui:define>
 </ui:composition>
 

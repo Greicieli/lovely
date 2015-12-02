@@ -8,7 +8,7 @@
 		<div id="listar">
 
 
-			<h1>Lista de Produtos</h1>
+			<h3 style="text-align: center;color: #CE9C15">Produtos</h3>
 			<div style="margin-left: 80%">
 				<h:link outcome="/admin/cadastroProduto">
 					<h:graphicImage value="#{resource['img/adicionar.png']}" width="27"
@@ -20,7 +20,7 @@
 
 					<div class="row" style="width: 200%; margin-left: 0.5%;">
 						<ui:repeat var="produto" value="#{produtoMb.produtos}">
-							<div class="col-sm-4 col-md-1">
+							<div class="col-sm-1 col-md-1">
 								<div class="thumbnail">
 									<img src="img/batman.jpg" alt="..." />
 									<div class="caption">
