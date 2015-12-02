@@ -16,7 +16,7 @@ public class FuncionarioDao extends Dao {
 	
 	private final String INSERT = "INSERT INTO funcionario( nome,  funcao, email) VALUES(?,?,?)";
 	private final String SELECT = "SELECT * FROM funcionario";
-	private final String UPDATE = "UPDATE cliente SET nome = ?, funcao = ?, email = ? WHERE idFuncionario = ?";
+	private final String UPDATE = "UPDATE funcionario SET nome = ?, funcao = ?, email = ? WHERE idFuncionario = ?";
 	private final String DELETE = "DELETE FROM funcionario WHERE idFuncionario = ?";
 	private final String SELECT_ID = "SELECT * FROM funcionario WHERE idFuncionario = ?";
 	

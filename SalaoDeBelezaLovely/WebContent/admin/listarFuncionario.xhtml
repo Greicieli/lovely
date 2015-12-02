@@ -6,7 +6,7 @@
 <ui:composition template="/WEB-INF/template/padrao.xhtml">
 
 	<ui:define name="conteudo">
-
+<h:form>
 		<div id="listar">
 
 
@@ -18,10 +18,10 @@
 							</h:link>
 					</div>
 			
-			<h:form>
+			
 
 
-				<div class="table-overflow">
+			
 					<h:dataTable styleClass="table table-striped" border="1"
 						value="#{funcionarioMb.funcionarios}" var="funcionario">
 
@@ -72,7 +72,7 @@
 				</div>
 			</h:form>
 
-		</div>
+	
 	</ui:define>
 </ui:composition>
 

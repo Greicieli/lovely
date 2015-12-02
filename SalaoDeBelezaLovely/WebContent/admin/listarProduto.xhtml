@@ -5,44 +5,37 @@
 
 <ui:composition template="/WEB-INF/template/padrao.xhtml">
 	<ui:define name="conteudo">
-	<div id="listar">
-				
-				
-					<h1>Lista de Produtos</h1>
-				<div style="margin-left: 80%">
-					<h:link outcome="/admin/cadastroProduto">
-						<h:graphicImage value="#{resource['img/adicionar.png']}" 
-							width="27" height="27" />
-							</h:link>
-					</div>
-					<h:form>
-					<div class="table-overflow">
-					
-					<h:dataTable border="1" value="#{produtoMb.produtos}" var="produto">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Descrição" />
-							</f:facet>
-							<h:outputText value="#{produto.descricao}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Valor" />
-							</f:facet>
-							<h:outputText value="#{produto.valor}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="Quantidade" />
-							</f:facet>
-							<h:outputText value="#{produto.quantidade}" />
-						</h:column>
+		<div id="listar">
 
 
-						<h:column>
+			<h1>Lista de Produtos</h1>
+			<div style="margin-left: 80%">
+				<h:link outcome="/admin/cadastroProduto">
+					<h:graphicImage value="#{resource['img/adicionar.png']}" width="27"
+						height="27" />
+				</h:link>
+			</div>
+			<h:form>
+				
+
+					<div class="row" style="width: 200%; margin-left: 0.5%;">
+						<ui:repeat var="produto" value="#{produtoMb.produtos}">
+							<div class="col-sm-4 col-md-1">
+								<div class="thumbnail">
+									<img src="img/batman.jpg" alt="..." />
+									<div class="caption">
+										
+										<p>
+											<h:outputText value="#{produto.descricao}" />
+											<br /> <b>R$: <h:outputText value="#{produto.valor}" /></b>
+
+										</p>
+										<b><h:outputText value="#{produto.quantidade}" /></b>
+										<p>
+											<h:column>
 							<f:facet name="header"></f:facet>
 							<h:commandLink title="Editar" style="text-align: center"
-								action="#{funcionarioMb.editar(funcionario.idFuncionario)}">
+								action="#{produtoMb.editar(produto.idProduto)}">
 								<div class="center">
 									<h:graphicImage value="#{resource['img/editar.png']}" alt=""
 										width="27" height="27" />
@@ -51,8 +44,8 @@
 
 						</h:column>
 						<h:column>
-							<h:commandLink title="Exluir"  style="text-align: center"
-								action="#{funcionarioMb.excluir(funcionario.idFuncionario)}"
+							<h:commandLink title="Exluir" style="text-align: center"
+								action="#{produtoMb.excluir(produto.idProduto)}"
 								onclick="return confirm('Tem certeza que deseja excluir usuário &#34;#{funcionario.nome}&#34;?')">
 								<div class="center">
 									<h:graphicImage value="#{resource['img/delete.png']}" alt=""
@@ -61,11 +54,15 @@
 							</h:commandLink>
 
 						</h:column>
-					</h:dataTable>
+
+										</p>
+									</div>
+								</div>
+							</div>
+						</ui:repeat>
 					</div>
-				</h:form>
-			</div>
-		
+</h:form>
+</div>
 	</ui:define>
 </ui:composition>
 
