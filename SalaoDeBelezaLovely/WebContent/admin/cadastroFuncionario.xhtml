@@ -5,43 +5,61 @@
 
 <ui:composition template="/WEB-INF/template/padrao.xhtml">
 	<ui:define name="conteudo">
-	<div  class="modal fade bs-example-modal-sm" tabindex="-1"
-				role="dialog" aria-labelledby="mySmallModalLabel">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						
-						<div id="cadastro" style="margin-top: 20%;">
-							<h:form>
-								<h1>Cadastro de Funcionarios</h1>
+		<div id="cadastro">
+			<h:form>
+				<h2 style="text-align: center;">Cadastro de Funcionários</h2>
+				<h:inputHidden value="#{funcionarioMb.funcionario.idFuncionario}" />
+				
+					<hr style="color: black;"/>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome:" for="nome_id" style="margin-left: 20%" />
+					<h:inputText id="nome_id" value="#{funcionarioMb.funcionario.nome}"
+						required="true" requiredMessage="O nome é obrigatório!" size="40" style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+				</h:panelGrid>
+				<br></br>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Função:  " for="funcao_id" />
+					<h:inputText id="funcao_id"
+						value="#{funcionarioMb.funcionario.funcao}" required="true"
+						requiredMessage="O Telefone é obrigatório!" maxlength="15" size="40" style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+				</h:panelGrid>
+				<br></br>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="E-mail:" for="email_id" style="margin-left: 19%" />
+					<h:inputText id="email_id"
+						value="#{funcionarioMb.funcionario.email}" required="true"
+						requiredMessage="O E-mail é obrigatório!" size="40" style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+</h:panelGrid>
+				<br></br>
+				<h:panelGrid columns="2">
+				
+			
+				<h:commandLink  title="Salvar" 
+								action="#{funcionarioMb.salvar()}">
+								
+									<h:graphicImage value="#{resource['img/confirmar.png']}" alt=""
+										width="33" height="33" style="margin-left: 94%" />
+								
+							</h:commandLink>
 
-								<h:panelGrid columns="2">
-									<h:outputLabel value="Nome:" for="nome_id" />
-									<h:inputText id="nome_id"
-										value="#{funcionarioMb.funcionario.nome}" required="true"
-										requiredMessage="O nome é obrigatório!" />
 
-									<h:outputLabel value="Função:  " for="funcao_id" />
-									<h:inputText id="funcao_id"
-										value="#{funcionarioMb.funcionario.funcao}" required="true"
-										requiredMessage="O Telefone é obrigatório!" maxlength="15" />
+					<h:link outcome="/admin/listarFuncionario">
+						<h:graphicImage value="#{resource['img/voltar.png']}" alt=""
+							width="33" height="33" />
+					</h:link>
 
-									<h:outputLabel value="E-mail:" for="email_id" />
-									<h:inputText id="email_id"
-										value="#{funcionarioMb.funcionario.email}" required="true"
-										requiredMessage="O E-mail é obrigatório!" />
+				</h:panelGrid>
 
+			</h:form>
+		</div>
 
-
-									<h:commandButton value="Salvar"
-										action="#{funcionarioMb.salvar()}" />
-
-								</h:panelGrid>
-							</h:form>
-						</div>
-					</div>
-				</div>
-			</div>
-    </ui:define>
+	</ui:define>
 </ui:composition>
 
 </html>

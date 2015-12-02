@@ -10,48 +10,14 @@
 		<div id="listar">
 
 
-			<h:outputLabel>Lista de Funcionarios</h:outputLabel>
-			<button style="margin-left: 30%;background: #CE9C15;border-bottom: black;" type="button" class="btn btn-primary" data-toggle="modal"
-				data-target=".bs-example-modal-sm">Adicionar</button>
-
-			<div  class="modal fade bs-example-modal-sm" tabindex="-1"
-				role="dialog" aria-labelledby="mySmallModalLabel">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						
-						<div id="cadastro" style="margin-top: 20%;">
-							<h:form>
-								<h1>Cadastro de Funcionarios</h1>
-
-								<h:panelGrid columns="2">
-									<h:outputLabel value="Nome:" for="nome_id" />
-									<h:inputText id="nome_id"
-										value="#{funcionarioMb.funcionario.nome}" required="true"
-										requiredMessage="O nome é obrigatório!" />
-
-									<h:outputLabel value="Função:  " for="funcao_id" />
-									<h:inputText id="funcao_id"
-										value="#{funcionarioMb.funcionario.funcao}" required="true"
-										requiredMessage="O Telefone é obrigatório!" maxlength="15" />
-
-									<h:outputLabel value="E-mail:" for="email_id" />
-									<h:inputText id="email_id"
-										value="#{funcionarioMb.funcionario.email}" required="true"
-										requiredMessage="O E-mail é obrigatório!" />
-
-
-
-									<h:commandButton value="Salvar"
-										action="#{funcionarioMb.salvar()}" />
-
-								</h:panelGrid>
-							</h:form>
-						</div>
+			<h3 style="text-align: center;color: #CE9C15">Funcionários</h3>
+			<div style="margin-left: 80%">
+					<h:link title="Cadastrar Funcionário" outcome="/admin/cadastroFuncionario">
+						<h:graphicImage value="#{resource['img/adicionar.png']}" 
+							width="27" height="27" />
+							</h:link>
 					</div>
-				</div>
-			</div>
-
-
+			
 			<h:form>
 
 
@@ -81,7 +47,7 @@
 
 						<h:column>
 							<f:facet name="header"></f:facet>
-							<h:commandLink title="Editar" style="text-align: center"
+							<h:commandLink  title="Editar" style="text-align: center"
 								action="#{funcionarioMb.editar(funcionario.idFuncionario)}">
 								<div class="center">
 									<h:graphicImage value="#{resource['img/editar.png']}" alt=""

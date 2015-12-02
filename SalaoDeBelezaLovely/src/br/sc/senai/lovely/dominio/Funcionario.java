@@ -2,20 +2,20 @@ package br.sc.senai.lovely.dominio;
 
 public class Funcionario {
 	
-	 private Long idFuncionario;
+	 private long idFuncionario;
 	 private String nome;
 	 private String funcao;
 	 private String email;
 
 	
 
-	public Long getIdFuncionario() {
+	public long getIdFuncionario() {
 		return idFuncionario;
 	}
 
 
 	
-	public void setIdFuncionario(Long idFuncionario) {
+	public void setIdFuncionario(long idFuncionario) {
 		this.idFuncionario = idFuncionario;
 	}
 

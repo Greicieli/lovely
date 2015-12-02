@@ -1,3 +1,4 @@
+
 package br.sc.senai.lovely.mb;
 
 import java.util.List;
@@ -23,11 +24,8 @@ public class FuncionarioMb {
 	@PostConstruct
 	public void init(){
 		rn = new FuncionarioRn();
-		if (funcionario == null) {
-			funcionario = new Funcionario();
-		}
-		
-	
+		funcionario = new Funcionario();
+			
 	}
 	
 	
@@ -93,6 +91,8 @@ public class FuncionarioMb {
 		funcionario = rn.buscarPorId(id);
 		return "cadastroFuncionario";
 	}
+	
+	
 	
 }
 
