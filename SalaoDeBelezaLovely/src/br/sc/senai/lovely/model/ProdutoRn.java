@@ -15,7 +15,7 @@ public class ProdutoRn {
 	
 	 public void salvar(Produto produto) throws Exception{
 		if(produto.getDescricao().trim().isEmpty()){
-			throw new Exception("A descrição é um campo obrigatório!");
+			throw new Exception("A descriÃ§Ã£o Ã© um campo obrigatÃ³rio!");
 		}
 		
 		dao.salvar(produto);

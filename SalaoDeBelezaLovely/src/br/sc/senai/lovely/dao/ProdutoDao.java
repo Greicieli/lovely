@@ -13,7 +13,7 @@ public class ProdutoDao extends Dao {
 	
 	private final String INSERT = "INSERT INTO produto(descricao, valor, quantidade) VALUES (?,?,?)";
 	private final String SELECT = "SELECT * FROM produto";
-	private final String UPDATE = "UPDATE produto SET descricao = ?, valor = ?,quantidade = ? WHERE idProduto = ?";
+	private final String UPDATE = "UPDATE produto SET descricao = ?, valor = ?, quantidade = ? WHERE idProduto = ?";
 	private final String DELETE = "DELETE FROM produto WHERE idProduto = ?";
 	private final String SELECT_ID = "SELECT * FROM produto WHERE idProduto = ?";
 
@@ -33,9 +33,7 @@ public class ProdutoDao extends Dao {
 		try {
 
 			PreparedStatement ps = getConnection().prepareStatement(INSERT);
-			ps.setString(1, produto.getDescricao());
-			ps.setInt(2, produto.getQuantidade());
-			ps.setDouble(3, produto.getValor());
+			parseProduto(produto, ps);
 
 			ps.executeUpdate();
 
@@ -55,15 +53,11 @@ public class ProdutoDao extends Dao {
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new Exception("Erro ao tentar salvar o usuario");
+			throw new Exception("Erro ao tentar salvar o produto");
 		}
 
 	}
 
-	private void parseProduto(Produto produto, PreparedStatement ps)
-			throws SQLException {
-			parseProduto(produto, ps);
-	}
 
 	public void excluir(Long idProduto) throws Exception {
 		try {
@@ -129,6 +123,14 @@ public class ProdutoDao extends Dao {
 		produto.setQuantidade(rs.getInt("quantidade"));
 		produto.setValor(rs.getDouble("valor"));
 	}
+	
 
+
+	private void parseProduto(Produto produto, PreparedStatement ps)
+			throws SQLException {
+		ps.setString(1, produto.getDescricao());
+		ps.setInt(2, produto.getQuantidade());
+		ps.setDouble(3, produto.getValor());
+	}
 	
 }
