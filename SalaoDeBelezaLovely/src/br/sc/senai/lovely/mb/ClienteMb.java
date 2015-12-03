@@ -70,6 +70,7 @@ public class ClienteMb {
 
 
 	public String salvar() {
+		//criar condição de se usuario for igual 1 listar cliente se não voltar pro login      
 		try {
 			rn.salvar(cliente);
 		} catch (Exception e) {

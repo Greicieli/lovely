@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/template/padrao.xhtml">
+	<ui:define name="conteudo">
+
+		<div id="cadastro">
+			<h:form>
+				<h:messages />
+				<h2 style="text-align: center;">Cadastro</h2>
+
+				<hr style="color: black;"/>
+				<h:panelGrid columns="4">
+					<h:outputLabel value="Nome:" for="nome_id" style="margin-left: 38%" />
+					<h:inputText id="nome_id" value="#{clienteMb.cliente.nome}"
+						required="true" requiredMessage="O nome é obrigatório!" size="40" style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+
+					<h:outputLabel value="Telefone: " for="telefone_id" style="margin-left: 30%" />
+					<h:inputText id="telefone_id"
+						value="#{clienteMb.cliente.telefone}" required="true"
+						requiredMessage="O Telefone é obrigatório!" maxlength="15"  style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+				</h:panelGrid>
+				<br></br>
+				<h:outputLabel value="Endereço:" for="endereco_id" />
+					<h:inputText id="endereco_id"
+						value="#{clienteMb.cliente.endereco}" required="true"
+						requiredMessage="O endereço é obrigatório!" size="40" style="margin-left: 2%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+						<br></br><br></br>
+						<h:panelGrid columns="4">
+					<h:outputLabel value="E-mail:" for="email_id"  style="margin-left: 37%"/>
+					<h:inputText id="email_id" value="#{clienteMb.cliente.email}"
+						required="true" requiredMessage="O E-mail é obrigatório!" size="40" style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+
+						<h:outputLabel value="Senha:" for="senha_id" style="margin-left: 48%" />
+					<h:inputText id="senha_id"
+						value="#{clienteMb.cliente.senha}" required="true"
+						requiredMessage="A senha é obrigatória!" style="margin-left: 5%;-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;color: black;" />
+						</h:panelGrid>
+
+					<br></br>
+				<h:panelGrid columns="2">
+				
+			
+				<h:commandLink  title="Salvar" 
+								action="#{funcionarioMb.salvar()}">
+								
+									<h:graphicImage value="#{resource['img/confirmar.png']}" alt=""
+										width="33" height="33" style="margin-left: 94%" />
+								
+							</h:commandLink>
+
+
+					<h:link outcome="/admin/listarCliente">
+						<h:graphicImage value="#{resource['img/voltar.png']}" alt=""
+							width="33" height="33" />
+					</h:link>
+
+				</h:panelGrid>
+		</h:form>
+		
+		
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>
