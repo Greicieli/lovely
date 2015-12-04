@@ -12,13 +12,12 @@ import br.sc.senai.lovely.dominio.Funcionario;
 
 
 public class FuncionarioDao extends Dao {
-	
-	
-	private final String INSERT = "INSERT INTO funcionario( nome,  funcao, email) VALUES(?,?,?)";
-	private final String SELECT = "SELECT * FROM funcionario";
-	private final String UPDATE = "UPDATE funcionario SET nome = ?, funcao = ?, email = ? WHERE idFuncionario = ?";
-	private final String DELETE = "DELETE FROM funcionario WHERE idFuncionario = ?";
-	private final String SELECT_ID = "SELECT * FROM funcionario WHERE idFuncionario = ?";
+		
+	private final String INSERT = "INSERT INTO produto( decricao,  valor, quantidade) VALUES(?,?,?)";
+	private final String SELECT = "SELECT * FROM produto";
+	private final String UPDATE = "UPDATE produto SET descricao = ?, valor = ?, quantidade = ? WHERE idProduto = ?";
+	private final String DELETE = "DELETE FROM funcionario WHERE idProduto = ?";
+	private final String SELECT_ID = "SELECT * FROM produto WHERE idProduto = ?";
 	
 
 	public void salvar(Funcionario funcionario) throws Exception {
