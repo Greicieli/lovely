@@ -15,8 +15,8 @@ public class ClienteDao extends Dao {
 	private final String INSERT = "INSERT INTO cliente(nome, telefone, email, endereco, senha) VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM cliente";
 	private final String UPDATE = "UPDATE cliente SET  nome = ?, telefone = ?, email = ?, endereco = ?, senha = ? WHERE idCliente = ?";
-	private final String DELETE = "DELETE FROM cliente WHERE idcliente = ?";
-	private final String SELECT_ID = "SELECT * FROM cliente WHERE idcliente = ?";
+	private final String DELETE = "DELETE FROM cliente WHERE idCliente = ?";
+	private final String SELECT_ID = "SELECT * FROM cliente WHERE idCliente = ?";
 	
 	
 	
