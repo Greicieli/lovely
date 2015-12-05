@@ -4,7 +4,7 @@ body,xhtml {
 	font-family: Tahoma;
 	background-image: url("#{resource['img/fundo1.png']}");
 }
-
+	
 #logo {
 	margin-left: 50%;
 	margin: auto;

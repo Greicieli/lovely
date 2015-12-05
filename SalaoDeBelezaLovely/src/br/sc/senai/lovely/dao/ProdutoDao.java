@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.sc.senai.lovely.dominio.Cliente;
 import br.sc.senai.lovely.dominio.Produto;
 
 public class ProdutoDao extends Dao {
@@ -20,7 +21,7 @@ public class ProdutoDao extends Dao {
 	
 	
 	public void salvar(Produto produto) throws Exception {
-		if (produto.getIdProduto() == 0) {
+		if (produto.getIdProduto() == null) {
 			inserir(produto);
 		}else{
 			alterar(produto);
@@ -100,28 +101,28 @@ public class ProdutoDao extends Dao {
 
 	public Produto buscarPorId(Long idProduto) {
 		try {
-			PreparedStatement preparedStatement = getConnection()
-					.prepareStatement(SELECT_ID);
-			preparedStatement.setLong(1, idProduto);
-
-			ResultSet resultSet = preparedStatement.executeQuery();
-			if (resultSet.next()) {
-				parseProduto(resultSet);
-
+			PreparedStatement ps = getConnection().prepareStatement(SELECT_ID);
+			ps.setLong(1, idProduto);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Produto produto = parseProduto(rs);
+				return produto;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Erro ao executar o select de user: " + e);
 		}
 		return null;
-	}
+		}
 
-	private void parseProduto(ResultSet rs) throws SQLException {
+	private Produto parseProduto(ResultSet rs) throws SQLException {
 		Produto produto = new Produto();
 
 		produto.setIdProduto(rs.getLong("idProduto"));
 		produto.setDescricao(rs.getString("descricao"));
 		produto.setQuantidade(rs.getInt("quantidade"));
 		produto.setValor(rs.getDouble("valor"));
+		return produto;
 	}
 	
 
