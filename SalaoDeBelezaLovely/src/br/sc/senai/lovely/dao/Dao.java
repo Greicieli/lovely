@@ -11,7 +11,7 @@ public class Dao {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(
-						"jdbc:mysql://localhost/lovely", "root", "");
+						"jdbc:mysql://localhost/lovely", "root", "Berger123");
 				System.out.println("Conectou");
 			} catch (Exception e) {
 				e.printStackTrace();
