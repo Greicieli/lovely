@@ -9,12 +9,8 @@
 
 
 			<h3 style="text-align: center;color: #CE9C15">Produtos</h3>
-			<div style="margin-left: 80%">
-				<h:link outcome="/admin/cadastroProduto">
-					<h:graphicImage value="#{resource['img/adicionar.png']}" width="27"
-						height="27" />
-				</h:link>
-			</div>
+			
+			
 			<h:form>
 				
 
@@ -30,31 +26,13 @@
 											<br /> <b>R$: <h:outputText value="#{produto.valor}" /></b>
 
 										</p>
-										<b><h:outputText value="#{produto.quantidade}" /></b>
+										<b>Qntidade:<h:outputText value="#{produto.quantidade}" /></b>
 										<p>
 										<h:panelGrid columns="2">
-											<h:column>
-							<f:facet name="header"></f:facet>
-							<h:commandLink title="Editar" style="text-align: center"
-								action="#{produtoMb.editar(produto.idProduto)}">
-								<div class="center">
-									<h:graphicImage value="#{resource['img/editar.png']}" alt=""
-										width="27" height="27" />
-								</div>
-							</h:commandLink>
+											
 
-						</h:column>
-						<h:column>
-							<h:commandLink title="Exluir" style="text-align: center"
-								action="#{produtoMb.excluir(produto.idProduto)}"
-								onclick="return confirm('Tem certeza que deseja excluir usuário &#34;#{funcionario.nome}&#34;?')">
-								<div class="center">
-									<h:graphicImage value="#{resource['img/delete.png']}" alt=""
-										width="27" height="27" />
-								</div>
-							</h:commandLink>
-
-						</h:column>
+						
+				
 						</h:panelGrid>
 
 										</p>
