@@ -38,7 +38,7 @@ public class SessaoMB {
 		
 		if ( usuario != null && usuarioForm.getUsuario().equalsIgnoreCase(usuario.getUsuario())
 				&& usuarioForm.getSenha().equals(usuario.getSenha())) {
-			usuarioLogado = usuarioForm;
+			usuarioLogado = usuario;
 			System.out.println("Entrou");
 			return "/index";
 			
