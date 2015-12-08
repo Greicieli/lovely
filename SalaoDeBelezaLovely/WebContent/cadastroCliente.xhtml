@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/WEB-INF/template/padrao.xhtml">
 	<ui:define name="conteudo">
@@ -20,13 +21,13 @@
 -moz-border-radius: 4px;
 border-radius: 4px;color: black;" />
 
-					<h:outputLabel value="Telefone: " for="telefone_id"
+					<p:outputLabel value="Telefone: " for="telefone_id"
 						style="margin-left: 30%" />
-					<h:inputText id="telefone_id" value="#{clienteMb.cliente.telefone}"
+					<p:inputMask id="telefone_id" value="#{clienteMb.cliente.telefone}" mask="(999)9999-9999"
 						maxlength="15"
 						style="margin-left: 5%;-webkit-border-radius: 4px;
 -moz-border-radius: 4px;
-border-radius: 4px;color: black;" />
+border-radius: 4px;color: black;"  />
 				</h:panelGrid>
 				<br></br>
 

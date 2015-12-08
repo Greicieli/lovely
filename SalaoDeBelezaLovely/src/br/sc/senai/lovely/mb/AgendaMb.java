@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import br.sc.senai.lovely.dao.AgendaDao;
 import br.sc.senai.lovely.dominio.Agenda;
 import br.sc.senai.lovely.dominio.Cliente;
 import br.sc.senai.lovely.dominio.Funcionario;
@@ -16,8 +17,7 @@ import br.sc.senai.lovely.model.FuncionarioRn;
 
 
 
-@ManagedBean(name="agendaBean")
-@SessionScoped
+@ManagedBean
 
 public class AgendaMb {
 	
@@ -27,6 +27,7 @@ public class AgendaMb {
 	private FuncionarioRn controleFuncionario;
 	private List<Agenda> agendas;
 	private Agenda agendaSelecionada;
+	private AgendaDao dao;
 	
 	public AgendaMb(){
 	agenda = new Agenda();
@@ -114,9 +115,9 @@ public class AgendaMb {
 	
 	
 	
-	//public List<Funcionario> listarFuncionarios() {
-	//	return dao.listarTodos();
-	//}
+public List<Funcionario> listarFuncionarios() throws Exception {
+	return controleFuncionario.listar();
+	}
 	
 	public List<Cliente> listarClientes() {
 		return controleCliente.listarTodos();

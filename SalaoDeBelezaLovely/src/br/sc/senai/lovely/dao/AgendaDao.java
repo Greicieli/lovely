@@ -8,19 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.sc.senai.lovely.dominio.Agenda;
+import br.sc.senai.lovely.dominio.Cliente;
+import br.sc.senai.lovely.dominio.Funcionario;
+
+
 
 
 public class AgendaDao extends Dao  {
 	
-	private Connection connection;
+	
 	private final String INSERT = "INSERT INTO agenda(data, hora, procedimento, idfuncionario, idcliente) VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM agenda";
 	private final String UPDATE = "UPDATE agenda SET  data = ?, hora = ?, procedimento = ?, idfuncionario = ?, idcliente = ? WHERE idagendamento = ?";
 	private final String DELETE = "DELETE FROM agenda WHERE idagendamento = ?";
+	private final String SELECT_ID = "SELECT * FROM agenda WHERE idagendamento = ?";
 
 	
 
-	public void salvar(Agenda agenda ) {
+	public void salvar(Agenda agenda ) throws Exception {
 		if(agenda.getIdAgendamento() ==0){
 			salvar(agenda);
 		}else{
@@ -29,6 +34,89 @@ public class AgendaDao extends Dao  {
 		
 	}
 
+	
+
+	
+	public void alterar(Agenda agenda) throws Exception {
+		try{
+			PreparedStatement ps = getConnection().prepareStatement(UPDATE);
+			parseAgenda(agenda, ps);
+			ps.setLong(6, agenda.getIdAgendamento());			
+				
+			ps.executeUpdate();
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+			throw new Exception("Erro ao tentar salvar o a agenda");
+			
+		}
+		
+	}
+
+	private void inserir(Agenda agenda) throws Exception {
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(INSERT);
+			parseAgenda(agenda, ps);
+			
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Erro ao tentar salvar o agendamento");
+		}
+		
+	}
+	
+	public void excluir(Long idAgendamento) throws Exception {
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(DELETE);
+			ps.setLong(1, idAgendamento);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new Exception("Erro ao tentar salvar o usuario");
+		}
+		
+	}
+
+	
+	public List<Agenda> listarTodos() throws Exception {
+		List<Agenda> agendamento = new ArrayList<Agenda>();
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(SELECT);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				FuncionarioDao funcionarioDao = new FuncionarioDao();
+				ClienteDao clienteDao = new ClienteDao();
+				Agenda agenda = new Agenda();
+				parseAgenda(rs);
+				
+				agendamento.add(agenda);
+			}
+		} catch (SQLException ex) {
+			System.out.println("Erro ao executar o select da locação: " + ex);
+		
+		}
+			return agendamento;
+	}
+
+	public Agenda buscarPorId(Long idAgendamento) {
+		try {
+			PreparedStatement ps = getConnection().prepareStatement(SELECT_ID);
+			ps.setLong(1, idAgendamento);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Agenda agenda = parseAgenda(rs);
+				return agenda;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Erro ao executar o select de user: " + e);
+		}
+		return null;
+	}
+
+	
 	private void parseAgenda(Agenda agenda, PreparedStatement ps)
 			throws SQLException {
 		ps.setObject(1, agenda.getData());
@@ -37,78 +125,15 @@ public class AgendaDao extends Dao  {
 		ps.setLong(4, agenda.getFuncionario().getIdFuncionario());
 		ps.setLong(5, agenda.getCliente().getIdCliente());
 	}
-
 	
-	public void alterar(Agenda agenda) {
-		try{
-			PreparedStatement ps = null;
-		
-			
-			ps = connection.prepareStatement(UPDATE);
-			parseAgenda(agenda, ps);
-			ps.setInt(6, agenda.getIdAgendamento());
-			
-				
-			ps.executeUpdate();
-			
-		}catch(SQLException ex){
-			System.out.println("Erro ao executar o insert" + ex);
-		}finally{
-			
-		}
-		
+	private Agenda parseAgenda(ResultSet rs) throws SQLException {
+		Agenda agenda = new Agenda();
+		agenda.setIdAgendamento(rs.getLong("idAgendamento"));
+		agenda.setData(rs.getDate("data"));
+		agenda.setHora(rs.getTime("hora"));
+		agenda.setProcedimento(rs.getString("procedimento"));
+		//agenda.setFuncionario(rs.getLong("idFuncionario"));
+		//agenda.setCliente(rs.getLong("idcliente"));
+		return agenda;
 	}
-
-	
-	public void excluir(Agenda agenda) {
-		try {
-			PreparedStatement ps = null;
-			
-			ps = connection.prepareStatement(DELETE);
-			ps.setLong(1, agenda.getIdAgendamento());
-			ps.executeUpdate();
-		} catch (SQLException ex) {
-			System.out.println("Erro ao executar o delete: " + ex);
-		} finally {
-		}
-		
-	}
-
-	
-	public List<Agenda> listarTodos() {
-		List<Agenda> agendamento = new ArrayList<Agenda>();
-		try {
-			PreparedStatement ps = null;
-			ResultSet rs = null;
-		
-			ps = connection.prepareStatement(SELECT);
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				//FuncionarioDao funcionarioDao = dao.getFuncionarioDao();
-				//ClienteDao clienteDao = dao.getClienteDao();
-				Agenda agenda = new Agenda();
-				agenda.setIdAgendamento(rs.getInt("idagendamento"));
-				agenda.setData(rs.getDate("data"));
-				agenda.setHora(rs.getTime("hora"));
-				agenda.setProcedimento(rs.getString("procedimento"));
-				//agenda.setFuncionario(funcionarioDao.buscarPorId(rs.getInt("idfuncionario")));
-				//agenda.setCliente(clienteDao.buscarPorId(rs.getInt("idcliente")));
-				
-				agendamento.add(agenda);
-			}
-		} catch (SQLException ex) {
-			System.out.println("Erro ao executar o select da locação: " + ex);
-		} finally {
-			
-		}
-		return agendamento;
-	}
-
-	
-	public Agenda buscarPorId(int idAgendamento) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
