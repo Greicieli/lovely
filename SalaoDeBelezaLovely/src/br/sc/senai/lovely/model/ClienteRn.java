@@ -16,16 +16,15 @@ public class ClienteRn {
 	
 	public void salvar(Cliente cliente) throws Exception{
 		if(cliente.getNome().trim().isEmpty()){
-			throw new Exception("O Nome é obrigatório!");
+			throw new Exception("O Nome Ã© obrigatÃ³rio!");
 		}
 		if(cliente.getEndereco().trim().isEmpty()){
-			throw new Exception("O endereço é obrigatório!");
+			throw new Exception("O endereÃ§o Ã© obrigatÃ³rio!");
 		}
 		if(cliente.getEmail().trim().isEmpty()){
-			throw new Exception("O e-mail é obrigatório!");
+			throw new Exception("O e-mail Ã© obrigatÃ³rio!");
 		}
-		
-		
+				
 		dao.salvar(cliente);
 		
 	}
