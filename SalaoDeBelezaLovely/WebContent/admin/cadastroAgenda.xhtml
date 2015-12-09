@@ -4,37 +4,18 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/WEB-INF/template/padrao.xhtml">
+
 	<ui:define name="conteudo">
+			<div id="cadastro">
+<h:form>
+				<h2 style="text-align: center;">Agendamentos</h2>
+				<h:inputHidden value="#{agendaMb.agenda.idAgendamento}" />
 
-		<div id="cadastro">
-		<script type="text/javascript" src="js/language/xx-XX.js"></script>
-		<script type="text/javascript">
-   		 var calendar = $('#calendar').calendar({language: 'xx-XX'});
-		</script>
-			
-	<form>
-				 <div id="calendar"></div>
-
-    <script type="text/javascript" src="js/vendor/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/vendor/underscore-min.js"></script>
-    <script type="text/javascript" src="js/calendar.js"></script>
-    <script type="text/javascript">
-        var calendar = $("#calendar").calendar(
-            {
-                tmpl_path: "/tmpls/",
-                events_source: function () { return []; }
-            });            
-    </script>
-			</form>
-		<h:form>
-		
-				
-		
-			<h1>Agendamento</h1>
+			<hr style="color: black;"/>			
 			<h:panelGrid  columns="2" >
 
-			<h:outputLabel value="Cliente : " for="cliente_id"/>
-			<h:selectOneMenu id="cliente_id" value="#{agendaMb.agenda.cliente.idCliente}">
+			<h:outputLabel value="Cliente : " for="cliente_id" style="margin-left: 20%" />
+			<h:selectOneMenu id="cliente_id" value="#{agendaMb.agenda.cliente.idCliente} ">
 				<f:selectItems value="#{agendaMb.listarClientes()}" var="cliente"
 								itemLabel="#{cliente.nome}" itemValue="#{cliente.idCliente}"/>
 			</h:selectOneMenu>
@@ -62,15 +43,26 @@
 					
 
 
-				
+				</h:panelGrid>
 
-				<h:commandButton value="Listar Agenda"
-					action="#{agendaMb.voltar}" immediate="true" />
-				<h:commandButton value="Salvar" action="#{agendaMb.salvar}" />
+				<h:panelGrid columns="2">
+
+
+					<h:commandLink title="Salvar" action="#{AgendaMb.salvar()}">
+
+						<h:graphicImage value="#{resource['img/confirmar.png']}" alt=""
+							width="33" height="33" style="margin-left: 94%" />
+
+					</h:commandLink>
+					<h:link outcome="/admin/listarAgenda">
+						<h:graphicImage value="#{resource['img/voltar.png']}" alt=""
+							width="33" height="33" />
+					</h:link>
 
 			</h:panelGrid>
 		</h:form>
-			</div>
+		</div>
+		
 	
 		<div id="rodape">
 		<br></br>Lovely SalÃ£o de Beleza
