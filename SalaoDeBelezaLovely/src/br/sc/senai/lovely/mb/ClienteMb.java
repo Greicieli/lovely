@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+
 import br.sc.senai.lovely.dominio.Cliente;
 import br.sc.senai.lovely.model.ClienteRn;
 
@@ -15,6 +16,7 @@ public class ClienteMb {
 	private ClienteRn rn;
 	private Cliente clienteSelecionado;
 	private List<Cliente> clientes;
+	
 	
 	@PostConstruct
 	public void init(){
@@ -55,7 +57,7 @@ public class ClienteMb {
 	}
 
 
-	public List<Cliente> getClientes() {
+	public List<Cliente> getClientes() throws Exception {
 		if(clientes == null){
 			clientes = rn.listarTodos();
  		}
@@ -70,14 +72,20 @@ public class ClienteMb {
 
 
 	public String salvar() {
-		//criar condição de se usuario for igual 1 listar cliente se não voltar pro login      
+		cliente.setAdmin("usuario");
 		try {
 			rn.salvar(cliente);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "";
 		}
-		return "listarCliente";
+		if(cliente.getAdmin().equalsIgnoreCase("usuario")){
+			return "index";
+		}else {
+			return "listarCliente";
+		}
+		
 	}
 	
 	public String novo() {

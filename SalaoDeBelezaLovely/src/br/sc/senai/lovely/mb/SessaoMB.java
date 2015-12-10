@@ -4,60 +4,59 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import br.sc.senai.lovely.dominio.Login;
-import br.sc.senai.lovely.model.LoginRn;
+import br.sc.senai.lovely.dominio.Cliente;
+import br.sc.senai.lovely.model.ClienteRn;
+
 
 
 @SessionScoped
 @ManagedBean
 public class SessaoMB {
-	private Login usuarioLogado;
-	private LoginRn rn;
-	private Login usuarioForm;
+	private Cliente clienteLogado;
+	private ClienteRn rn;
+	private Cliente usuarioForm;
 
 	@PostConstruct
 	public void iniciar() {
-		usuarioForm = new Login();
+		usuarioForm = new Cliente();
 	}
 
 	
-	public Login getUsuarioForm() {
+	
+
+	public Cliente getUsuarioForm() {
 		return usuarioForm;
 	}
 
 
-	public void setUsuarioForm(Login usuarioForm) {
+	public void setUsuarioForm(Cliente usuarioForm) {
 		this.usuarioForm = usuarioForm;
 	}
 
-
-
 	public String entrar() throws Exception  {
-		LoginRn rn = new LoginRn();
-		Login usuario = rn.buscarPorUsuario(usuarioForm.getUsuario());
+		ClienteRn rn = new ClienteRn();
+		Cliente cliente = rn.buscarPorEmail(usuarioForm.getEmail());
 		
-		if ( usuario != null && usuarioForm.getUsuario().equalsIgnoreCase(usuario.getUsuario())
-				&& usuarioForm.getSenha().equals(usuario.getSenha())) {
-			usuarioLogado = usuario;
+		if ( cliente != null && usuarioForm.getEmail().equalsIgnoreCase(cliente.getEmail())
+				&& usuarioForm.getSenha().equals(cliente.getSenha())) {
+			clienteLogado = cliente;
 			System.out.println("Entrou");
 			return "/index";
 			
 		}
 		
-		System.out.println("N�o Entrou");
+		System.out.println("Nao Entrou");
 		return "";
 	}
 
 	public String sair() {
-		usuarioLogado = null;
+		clienteLogado = null;
 		return "/index?faces-redirect=true";
 	}
 
 	public Boolean estaLogado() {
-		return usuarioLogado != null;
+		return clienteLogado != null;
 	}
 
-	public Boolean estaLogadoAdmin() {
-		return usuarioLogado != null && usuarioLogado.getAdmin();
-	}
+	
 }

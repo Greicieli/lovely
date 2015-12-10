@@ -11,7 +11,7 @@ import br.sc.senai.lovely.dominio.Cliente;
 
 
 public class ClienteDao extends Dao {
-	
+	private static final String SELECT_USUARIO = "SELECT * FROM cliente WHERE email = ?";
 	private final String INSERT = "INSERT INTO cliente(nome, telefone, email, endereco, senha) VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM cliente";
 	private final String UPDATE = "UPDATE cliente SET  nome = ?, telefone = ?, email = ?, endereco = ?, senha = ? WHERE idCliente = ?";
@@ -21,7 +21,7 @@ public class ClienteDao extends Dao {
 	
 	
 	public void salvar(Cliente cliente)  throws Exception {
-		if (cliente.getIdCliente() == null) {
+		if (cliente.getIdCliente() == 0) {
 			inserir(cliente);
 		} else {
 			alterar(cliente);
@@ -35,7 +35,7 @@ public class ClienteDao extends Dao {
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(UPDATE);
 			parseCliente(cliente, ps);
-			ps.setLong(4, cliente.getIdCliente());
+			ps.setLong(6, cliente.getIdCliente());
 			
 			ps.executeUpdate();
 		} catch (Exception e) {
@@ -72,7 +72,7 @@ public class ClienteDao extends Dao {
 		
 	}
 	
-	public List<Cliente> listarTodos() {
+	public List<Cliente> listarTodos() throws Exception {
 		List<Cliente>clientes = new ArrayList<Cliente>();
 		try {
 			PreparedStatement ps = getConnection().prepareStatement(SELECT);
@@ -107,25 +107,42 @@ public class ClienteDao extends Dao {
 			}
 	
 	
-
+		public Cliente buscarPorEmail(String email) {
+			try {
+				PreparedStatement ps = getConnection().prepareStatement(SELECT_USUARIO);
+				ps.setString(1, email);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					Cliente cliente = parseCliente(rs);
+					return cliente;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("Erro ao executar o select de user: " + e);
+			}
+			return null;
+			}
 	
 	private Cliente parseCliente(ResultSet rs) throws SQLException {
 		Cliente cliente  = new Cliente();
 		cliente.setIdCliente(rs.getLong("idCliente"));
 		cliente.setNome(rs.getString("nome"));
-		cliente.setTelefone(rs.getInt("telefone"));
+		cliente.setTelefone(rs.getString("telefone"));
 		cliente.setEmail(rs.getString("email"));
 		cliente.setEndereco(rs.getString("endereco"));
 		cliente.setSenha(rs.getString("senha"));;
+		cliente.setAdmin(rs.getString("admin"));
 		return cliente;
 	}
 	private void parseCliente(Cliente cliente, PreparedStatement ps)
 			throws SQLException {
 		ps.setString(1, cliente.getNome());
-		ps.setInt(2, cliente.getTelefone());
+		ps.setString(2, cliente.getTelefone());
 		ps.setString(3, cliente.getEmail());
 		ps.setString(4, cliente.getEndereco());
 		ps.setString(5, cliente.getSenha());
+		
+		
 	}
 	
 	

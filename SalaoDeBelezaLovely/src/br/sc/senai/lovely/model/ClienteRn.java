@@ -32,12 +32,15 @@ public class ClienteRn {
 	public void excluir(Long idCliente) throws Exception{
 		 dao.excluir(idCliente);
 	}
-	public List<Cliente> listarTodos() {
+	public List<Cliente> listarTodos() throws Exception {
 		 return dao.listarTodos();
 	}
 	
 	public Cliente buscarPorId(Long idCliente) throws Exception{
 		return dao.buscarPorId(idCliente);
 	}
-
+	
+	public Cliente buscarPorEmail(String email) throws Exception{
+		return dao.buscarPorEmail(email);
+	}
 }

@@ -26,8 +26,8 @@ border-radius: 4px;color: black;" />
 				</h:panelGrid>
 				<br></br>
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Valor:  " for="valor_id"
-						style="margin-left: 54%" />
+					<h:outputLabel value="Quantidade:  " for="valor_id"
+						 />
 					<h:inputText id="valor_id" value="#{produtoMb.produto.valor}"
 						required="true" requiredMessage="O Telefone é obrigatório!"
 						maxlength="15" size="40"
@@ -37,7 +37,7 @@ border-radius: 4px;color: black;" />
 				</h:panelGrid>
 				<br></br>
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Quantidade:" for="quantidade_id" />
+					<h:outputLabel value="Valor:" for="quantidade_id" style="margin-left: 55%" />
 					<h:inputText id="quantidade_id"
 						value="#{produtoMb.produto.quantidade}" size="40"
 						style="margin-left: 5%;-webkit-border-radius: 4px;

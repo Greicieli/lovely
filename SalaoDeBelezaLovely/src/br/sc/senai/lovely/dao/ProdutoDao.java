@@ -21,7 +21,7 @@ public class ProdutoDao extends Dao {
 	
 	
 	public void salvar(Produto produto) throws Exception {
-		if (produto.getIdProduto() == null) {
+		if (produto.getIdProduto() == 0) {
 			inserir(produto);
 		}else{
 			alterar(produto);

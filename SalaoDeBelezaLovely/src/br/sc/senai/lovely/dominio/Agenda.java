@@ -4,18 +4,19 @@ package br.sc.senai.lovely.dominio;
 import java.util.Date;
 
 public class Agenda {
-	Long idAgendamento;
-	Date data;
-	Date hora;
-	String procedimento;
+	private long idAgendamento;
+	private Date data;
+	private Date hora;
+	private String procedimento;
 	private Funcionario funcionario;
 	private Cliente cliente;
 	
-	public Long getIdAgendamento() {
+	
+	public long getIdAgendamento() {
 		return idAgendamento;
 	}
 	
-	public void setIdAgendamento(Long idAgendamento) {
+	public void setIdAgendamento(long idAgendamento) {
 		this.idAgendamento = idAgendamento;
 	}
 	
@@ -30,7 +31,7 @@ public class Agenda {
 	public Date getHora() {
 		return hora;
 	}
-	
+
 	public void setHora(Date hora) {
 		this.hora = hora;
 	}
@@ -46,7 +47,7 @@ public class Agenda {
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
-	
+
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
@@ -54,13 +55,10 @@ public class Agenda {
 	public Cliente getCliente() {
 		return cliente;
 	}
-	
+
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	
-	
-	
-	
-	
+
 }

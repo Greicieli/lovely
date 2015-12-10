@@ -14,31 +14,35 @@
 			<hr style="color: black;"/>			
 			<h:panelGrid  columns="2" >
 
-			<h:outputLabel value="Cliente : " for="cliente_id" style="margin-left: 20%" />
-			<h:selectOneMenu id="cliente_id" value="#{agendaMb.agenda.cliente.idCliente} ">
-				<f:selectItems value="#{agendaMb.listarClientes()}" var="cliente"
-								itemLabel="#{cliente.nome}" itemValue="#{cliente.idCliente}"/>
+			<h:outputLabel value="Cliente : " for="cliente_id" style="margin-left: 32%" />
+			<h:selectOneMenu id="cliente_id" value="#{agendaMb.agenda.cliente}" converter="ClienteConverter" >
+				<f:selectItem itemLabel="selecione" itemValue="0" noSelectionOption="true"/>
+				<f:selectItems value="#{agendaMb.listarCliente}" var="cliente"
+								itemLabel="#{cliente.nome}" itemValue="#{cliente}"/>
+				<f:attribute name="listaCliente" value="#{agendaMb.listarCliente}"/>
 			</h:selectOneMenu>
 			
 			
 			<h:outputLabel value="Funcionario : " for="funcionario_id"/>
-			<h:selectOneMenu id="funcionario_id" value="#{agendaMb.agenda.funcionario.idFuncionario}">
-				<f:selectItems value="#{agendaMb.listarFuncionarios()}" var="funcionario"
-								itemLabel="#{funcionario.nome}" itemValue="#{funcionario.idFuncionario}"/>
+			<h:selectOneMenu id="funcionario_id" value="#{agendaMb.agenda.funcionario}" converter="FuncionarioConverter">
+				<f:selectItem itemLabel="selecione" itemValue="0" noSelectionOption="true"/>
+				<f:selectItems value="#{agendaMb.listarFuncionario}" var="funcionario"
+								itemLabel="#{funcionario.nome}" itemValue="#{funcionario}"/>
+				<f:attribute name="listaFuncionario" value="#{agendaMb.listarFuncionario}"/>
 			</h:selectOneMenu>
 			
-						<h:outputLabel value="Data do Agendamento:" for="data_id"/>
+						<h:outputLabel value="Data :" for="data_id" style="margin-left: 50%;" />
 						<h:inputText id="data_id" value="#{agendaMb.agenda.data}" required="true" requiredMessage="A data do Agendaento Ã© obrigatÃ³ria!" converterMessage="Formato de data invÃ¡lido. Ex: 11/11/1111">
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
+							<f:convertDateTime pattern="dd/MM/yyyy"  />
 						</h:inputText>
 						
 						
-						<h:outputLabel value="Horario do Agendamento:" for="hora_id"/>
+						<h:outputLabel value="Hora :" for="hora_id" style="margin-left: 50%;"/>
 						<h:inputText id="hora_id" value="#{agendaMb.agenda.hora}" required="true" requiredMessage="O Horario do Agendamento Ã© obrigatÃ³rio!" converterMessage="Formato de hora invÃ¡lido. Ex: 00:00:00">
-							<f:convertDateTime pattern="HH:mm"/>
+							<f:convertDateTime pattern="HH:mm"   />
 						</h:inputText>
 
-				<h:outputLabel value="Procedimento:" for="procedimento_id"/>
+				<h:outputLabel value="Procedimento :" for="procedimento_id" />
 						<h:inputText id="procedimento_id" value="#{agendaMb.agenda.procedimento}" required="true" requiredMessage="O Procedimento Ã© obrigatÃ³rio!"/>
 					
 
@@ -48,7 +52,7 @@
 				<h:panelGrid columns="2">
 
 
-					<h:commandLink title="Salvar" action="#{AgendaMb.salvar()}">
+					<h:commandLink title="Salvar" action="#{agendaMb.salvar()}">
 
 						<h:graphicImage value="#{resource['img/confirmar.png']}" alt=""
 							width="33" height="33" style="margin-left: 94%" />
@@ -64,12 +68,7 @@
 		</div>
 		
 	
-		<div id="rodape">
-		<br></br>Lovely SalÃ£o de Beleza
-		<br>Rua Bocaiuva, 1900<a id= "mapa" href="https://www.google.com.br/maps/place/Beiramar+Shopping+Center/@-27.5913708,-48.5398807,14z/data=!4m2!3m1!1s0x0:0x213691a7fa55d9a4?hl=pt-br" target="_blank"> Ver mapa</a>
-		<br>Contato: (48) 3039-9078</br></br>
-		</div>
-
+		
 </ui:define>
 </ui:composition>
 

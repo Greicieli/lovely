@@ -1,6 +1,5 @@
 package br.sc.senai.lovely.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,20 +13,21 @@ import br.sc.senai.lovely.dominio.Funcionario;
 
 
 
+
 public class AgendaDao extends Dao  {
 	
 	
 	private final String INSERT = "INSERT INTO agenda(data, hora, procedimento, idfuncionario, idcliente) VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM agenda";
-	private final String UPDATE = "UPDATE agenda SET  data = ?, hora = ?, procedimento = ?, idfuncionario = ?, idcliente = ? WHERE idagendamento = ?";
-	private final String DELETE = "DELETE FROM agenda WHERE idagendamento = ?";
-	private final String SELECT_ID = "SELECT * FROM agenda WHERE idagendamento = ?";
+	private final String UPDATE = "UPDATE agenda SET  data = ?, hora = ?, procedimento = ?, idfuncionario = ?, idcliente = ? WHERE idAgendamento = ?";
+	private final String DELETE = "DELETE FROM agenda WHERE idAgendamento = ?";
+	private final String SELECT_ID = "SELECT * FROM agenda WHERE idAgendamento = ?";
 
 	
 
 	public void salvar(Agenda agenda ) throws Exception {
 		if(agenda.getIdAgendamento() ==0){
-			salvar(agenda);
+			inserir(agenda);
 		}else{
 			alterar(agenda);
 		}
@@ -86,10 +86,8 @@ public class AgendaDao extends Dao  {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				FuncionarioDao funcionarioDao = new FuncionarioDao();
-				ClienteDao clienteDao = new ClienteDao();
-				Agenda agenda = new Agenda();
-				parseAgenda(rs);
+				
+				Agenda agenda = parseAgenda(rs);
 				
 				agendamento.add(agenda);
 			}
@@ -128,12 +126,14 @@ public class AgendaDao extends Dao  {
 	
 	private Agenda parseAgenda(ResultSet rs) throws SQLException {
 		Agenda agenda = new Agenda();
+		agenda.setFuncionario(new Funcionario());
+		agenda.setCliente(new Cliente());
 		agenda.setIdAgendamento(rs.getLong("idAgendamento"));
 		agenda.setData(rs.getDate("data"));
 		agenda.setHora(rs.getTime("hora"));
 		agenda.setProcedimento(rs.getString("procedimento"));
-		//agenda.setFuncionario(rs.getLong("idFuncionario"));
-		//agenda.setCliente(rs.getLong("idcliente"));
+		agenda.getFuncionario().setIdFuncionario(rs.getLong("idFuncionario"));
+		agenda.getCliente().setIdCliente(rs.getLong("idCliente"));
 		return agenda;
 	}
 }

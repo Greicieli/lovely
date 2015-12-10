@@ -1,12 +1,13 @@
 package br.sc.senai.lovely.dominio;
 
 public class Cliente {
-	private Long idCliente;
+	private long idCliente;
 	private String nome;
-	private int telefone;
+	private String telefone;
 	private String email;
 	private String endereco;
 	private String senha;
+	private String admin;
 	
 	
 	public String getSenha() {
@@ -16,14 +17,14 @@ public class Cliente {
 		this.senha = senha;
 	}
 	
-	public Long getIdCliente() {
+	
+	public long getIdCliente() {
 		return idCliente;
 	}
 	
-	public void setIdCliente(Long idCliente) {
+	public void setIdCliente(long idCliente) {
 		this.idCliente = idCliente;
 	}
-	
 	public String getNome() {
 		return nome;
 	}
@@ -32,14 +33,15 @@ public class Cliente {
 		this.nome = nome;
 	}
 	
-	public int getTelefone() {
+	
+	
+	public String getTelefone() {
 		return telefone;
 	}
-	
-	public void setTelefone(int telefone) {
+
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
 	public String getEmail() {
 		return email;
 	}
@@ -54,6 +56,14 @@ public class Cliente {
 	
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	
+	public String getAdmin() {
+		return admin;
+	}
+	
+	public void setAdmin(String admin) {
+		this.admin = admin;
 	}
 	
 	

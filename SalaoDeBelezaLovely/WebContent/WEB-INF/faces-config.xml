@@ -4,5 +4,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
+    
+    <converter>  
+        <converter-id>ClienteConverter</converter-id>  
+        <converter-class>br.sc.senai.lovely.converter.ClienteConverter</converter-class>  
+    </converter> 
+    <converter>  
+        <converter-id>FuncionarioConverter</converter-id>  
+        <converter-class>br.sc.senai.lovely.converter.FuncionarioConverter</converter-class>  
+    </converter>  
 
 </faces-config>

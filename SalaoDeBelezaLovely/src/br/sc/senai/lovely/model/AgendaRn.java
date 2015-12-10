@@ -8,7 +8,11 @@ import br.sc.senai.lovely.dominio.Agenda;
 
 
 public class AgendaRn {
-	private AgendaDao dao;
+	 AgendaDao dao;
+	 
+	 public AgendaRn(){
+		 dao = new AgendaDao();
+	 }
 	
 	public void salvar(Agenda agenda) throws Exception {
 		if(agenda.getCliente()== null || agenda.getCliente().getIdCliente() == 0){
@@ -34,11 +38,11 @@ public class AgendaRn {
 		return dao.listarTodos();
 	}
 
-	//public Agenda buscarPorId(Long id) throws Exception{
-		//return dao.buscarPorId(id);
-	//}
+	public Agenda buscarPorId(Long idAgendamento) throws Exception{
+		return dao.buscarPorId(idAgendamento);
+	}
 
-	public void excluir(Long id) throws Exception {
-		// dao.excluir(id);
+	public void excluir(Long idAgendamento) throws Exception {
+		 dao.excluir(idAgendamento);
 	}
 }
